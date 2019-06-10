@@ -1,0 +1,809 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Grafana API Module &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Setup Script" href="setup.html" />
+    <link rel="prev" title="YAML Utility Module" href="yamlUtility.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Grafana API Module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/grafanaAPI.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="setup.html" class="btn btn-neutral float-right" title="Setup Script" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="yamlUtility.html" class="btn btn-neutral float-left" title="YAML Utility Module" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-grafanaAPI">
+<span id="grafana-api-module"></span><h1>Grafana API Module<a class="headerlink" href="#module-grafanaAPI" title="Permalink to this headline">¶</a></h1>
+<p>Module to use as interface with Grafana’s API.</p>
+<p>This module is intended to be used by the Grafana Provisioning scripts to
+communicate with Grafana’s API through HTTP requests. If you wish to use HTTPS
+all you need to do is add an <cite>s</cite> to the string returned by the _apiUrl function,
+note that this is not tested though.</p>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>The default timeout for API requests is 5 seconds. This can be changed through
+the global variable <cite>timeout</cite>.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="exception">
+<dt id="grafanaAPI.APIError">
+<em class="property">exception </em><code class="descclassname">grafanaAPI.</code><code class="descname">APIError</code><span class="sig-paren">(</span><em>user</em>, <em>password</em>, <em>response=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#APIError"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.APIError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents that an error occurred when executing an API request.</p>
+<p>This exception should be raised when an API request returns with a status code
+in the 4XX or 5XX range. This mirrors the behavior of the default
+requests.HTTPError, except that it doesn’t print the user and password
+contained in the url constituting the request (within the API, Grafana’s admin
+can only authenticate using the default authentication method for all of the
+admin only functions, although this might change in the future).</p>
+<p>When raised with an HTTP <code class="docutils literal notranslate"><span class="pre">response</span></code>, the exception prints out the status code
+returned, the method used for the request (e.g. POST), the url to which the
+request was made (without user and password) and the content of the response
+made by Grafana.</p>
+<p>Used together, these four items can give enough information to understand what
+request was being made and what went wrong with it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the user who was making the API request. To be erased from the
+url.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the user who was making the API request. To be erased from
+the url.</p>
+</dd>
+<dt><strong>response</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>requests.Response</cite>, optional</span></dt>
+<dd><p class="first last">Response to the API request containing error information. If ignored, the
+exception will not print an error message.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.createAccount">
+<code class="descclassname">grafanaAPI.</code><code class="descname">createAccount</code><span class="sig-paren">(</span><em>accountData</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#createAccount"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.createAccount" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Grafana user account.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>accountData</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite></span></dt>
+<dd><p class="first last">Dictionary with the data that Grafana can receive for account creation with
+the API. Grafana 5.4.2 supports the following fields:
+- <code class="docutils literal notranslate"><span class="pre">login</span></code>: Username of the new user (<cite>str</cite>).
+- <code class="docutils literal notranslate"><span class="pre">password</span></code>: Password of the new user (<cite>str</cite>).
+- <code class="docutils literal notranslate"><span class="pre">name</span></code>: Name of the new user (<cite>str</cite>).
+- <code class="docutils literal notranslate"><span class="pre">email</span></code>: Email of the new user (<cite>str</cite>).</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>userId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Grafana <code class="docutils literal notranslate"><span class="pre">id</span></code> of the newly created user.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: The user already exists, email already in use, invalid
+password or email, invalid credentials (<cite>user</cite> and <cite>password</cite>), the user
+doesn’t have permission to make this request or the server is not 
+responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code>, <a class="reference internal" href="#grafanaAPI.removeFromOrg" title="grafanaAPI.removeFromOrg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">removeFromOrg</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.createGrafanaAdmin">
+<code class="descclassname">grafanaAPI.</code><code class="descname">createGrafanaAdmin</code><span class="sig-paren">(</span><em>accountData</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#createGrafanaAdmin"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.createGrafanaAdmin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an account with Grafana Admin privileges.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>accountData</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite></span></dt>
+<dd><p class="first last">Dictionary with the data that Grafana can receive for account creation with
+the API. Grafana 5.4.2 supports the following fields:
+- <code class="docutils literal notranslate"><span class="pre">login</span></code>: Username of the new user (<cite>str</cite>).
+- <code class="docutils literal notranslate"><span class="pre">password</span></code>: Password of the new user (<cite>str</cite>).
+- <code class="docutils literal notranslate"><span class="pre">name</span></code>: Name of the new user (<cite>str</cite>).
+- <code class="docutils literal notranslate"><span class="pre">email</span></code>: Email of the new user (<cite>str</cite>).</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>userId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Grafana <code class="docutils literal notranslate"><span class="pre">id</span></code> of the newly created user.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: The user already exists, email already in use, invalid
+password or email, invalid credentials (<cite>user</cite> and <cite>password</cite>), the user
+doesn’t have permission to make this request or the server is not 
+responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#grafanaAPI.createAccount" title="grafanaAPI.createAccount"><code class="xref py py-obj docutils literal notranslate"><span class="pre">createAccount</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.createOrg">
+<code class="descclassname">grafanaAPI.</code><code class="descname">createOrg</code><span class="sig-paren">(</span><em>orgName</em>, <em>mainAdmin</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#createOrg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.createOrg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new Grafana organization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgName</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Name of the Grafana organization to be created.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Number corresponding to the new organization’s <code class="docutils literal notranslate"><span class="pre">id</span></code> in Grafana.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: an organization with that name already exists, invalid
+credentials (<cite>user</cite> and <cite>password</cite>), the user doesn’t have permission to
+make this request or the server is not responding. Check the error messages
+for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code>, <a class="reference internal" href="#grafanaAPI.setUserRoleOrg" title="grafanaAPI.setUserRoleOrg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">setUserRoleOrg</span></code></a>, <a class="reference internal" href="#grafanaAPI.getExistingUserId" title="grafanaAPI.getExistingUserId"><code class="xref py py-obj docutils literal notranslate"><span class="pre">getExistingUserId</span></code></a>, <a class="reference internal" href="#grafanaAPI.removeFromOrg" title="grafanaAPI.removeFromOrg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">removeFromOrg</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.getExistingUserId">
+<code class="descclassname">grafanaAPI.</code><code class="descname">getExistingUserId</code><span class="sig-paren">(</span><em>login</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#getExistingUserId"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.getExistingUserId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the Grafana <code class="docutils literal notranslate"><span class="pre">id</span></code> of a user that already exists</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>login</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Grafana (<code class="docutils literal notranslate"><span class="pre">login</span></code>) of the user for whom the <code class="docutils literal notranslate"><span class="pre">id</span></code> is being retrieved.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>id</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Grafana <code class="docutils literal notranslate"><span class="pre">id</span></code> of the existing user.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: user doesn’t exist, invalid credentials (<cite>user</cite> and
+<cite>password</cite>), the user doesn’t have permission to make this request or the
+server is not responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>If the user doesn’t exist and there is another user with an email that is equal
+to this user’s login name, that user will be retrieved instead.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.getOrgId">
+<code class="descclassname">grafanaAPI.</code><code class="descname">getOrgId</code><span class="sig-paren">(</span><em>orgName</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#getOrgId"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.getOrgId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obtain the <code class="docutils literal notranslate"><span class="pre">id</span></code> of a Grafana organization using its name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgName</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Name of the Grafana organization for which the <code class="docutils literal notranslate"><span class="pre">id</span></code> will be retrieved.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Number corresponding to the organization’s <code class="docutils literal notranslate"><span class="pre">id</span></code> in Grafana.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: an organization with that name doesn’t exist, invalid
+credentials (<cite>user</cite> and <cite>password</cite>), the user doesn’t have permission to
+make this request or the server is not responding. Check the error messages
+for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.removeFromOrg">
+<code class="descclassname">grafanaAPI.</code><code class="descname">removeFromOrg</code><span class="sig-paren">(</span><em>orgId</em>, <em>userId</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#removeFromOrg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.removeFromOrg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a user from a Grafana organization.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Number corresponding to the organization’s <code class="docutils literal notranslate"><span class="pre">id</span></code> in Grafana.</p>
+</dd>
+<dt><strong>userId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">id</span></code> of the user that is being removed from the Grafana organization.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>r</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>requests.Response</cite></span></dt>
+<dd><p class="first last">Response object containig the data returned by Grafana, including JSON data
+as a string which can be converted to a dictionary with r.json(), and a
+status code.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: invalid credentials (<cite>user</cite> and <cite>password</cite>), the user
+doesn’t have permission to make this request or the server is not
+responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>This function is intended to be used when creating new accounts to remove them
+from the default organization, and when creating new organizations to remove
+the API account from them.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.request">
+<code class="descclassname">grafanaAPI.</code><code class="descname">request</code><span class="sig-paren">(</span><em>method</em>, <em>api</em>, <em>user</em>, <em>password</em>, <em>jsn=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an api request with a string HTTP method, using basic authentication.</p>
+<p>Wrapper for internal _req function. This function receives an HTTP request
+method as a string and passes it onto _req as a function.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>method</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘get’, ‘post’, ‘put’, ‘delete’, ‘patch’} (<cite>str</cite>)</span></dt>
+<dd><p class="first last">An HTTP request method as a string.</p>
+</dd>
+<dt><strong>api</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Suffix of the url. This should be the variable part of the API path that is
+required in the url, i.e. what comes after <code class="docutils literal notranslate"><span class="pre">http://[...]/api/</span></code>.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>jsn</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite></span></dt>
+<dd><p class="first last">Contains the metadata that will be passed in JSON format with the API
+request. This should be data that Grafana is prepared to receive. Optional.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>response</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>requests.Response</cite></span></dt>
+<dd><p class="first last">Response object containig the data returned by Grafana, including JSON data
+as a string which can be converted to a dictionary with r.json(), and a
+status code.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ValueError</strong></dt>
+<dd><p class="first last">Raised if the method passed does not correspond to one of the accepted
+parameters.</p>
+</dd>
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: incomplete or wrong data passed with <cite>jsn</cite>, the <cite>api</cite>
+url or the <cite>method</cite> is wrong, invalid credentials (<cite>user</cite> and <cite>password</cite>),
+the user doesn’t have permission to make this request or the server is not
+responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_apiUrl</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>This function makes the script importing this module free to call a request
+with an HTTP method as string instead of as a library function. This way we
+separate implementation details from functionality.</p>
+<p>The <cite>methods</cite> dictionary is defined globally so that it does not need to be
+created every time a request is made. It only contains the HTTP methods
+currently used by the scripts.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="grafanaAPI.setUserRoleOrg">
+<code class="descclassname">grafanaAPI.</code><code class="descname">setUserRoleOrg</code><span class="sig-paren">(</span><em>orgId</em>, <em>userId</em>, <em>login</em>, <em>newRole</em>, <em>user</em>, <em>password</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/grafanaAPI.html#setUserRoleOrg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#grafanaAPI.setUserRoleOrg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a user to an org, with a role. Or set the role for a user in an org.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">Number corresponding to the organization’s <code class="docutils literal notranslate"><span class="pre">id</span></code> in Grafana.</p>
+</dd>
+<dt><strong>userId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">id</span></code> of the user who is being assigned a role on the Grafana org.</p>
+</dd>
+<dt><strong>login</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Grafana username (<code class="docutils literal notranslate"><span class="pre">login</span></code>) of the user who is being assingned a role.</p>
+</dd>
+<dt><strong>newRole</strong> <span class="classifier-delimiter">:</span> <span class="classifier">{‘Admin’, ‘Editor’, ‘Viewer’}</span></dt>
+<dd><p class="first last">The role to be assigned to the user inside the organization.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: invalid <cite>newRole</cite>, inexistant organization or user, 
+wrong <cite>login</cite> regarding the given <cite>userId</cite>, invalid credentials (<cite>user</cite> and
+<cite>password</cite>), the user doesn’t have permission to make this request or the
+server is not responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_req</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>In the future, if needed login can be turned into an optional parameter and it
+can be fetched inside this function using <cite>userId</cite>. Currently the function
+assumes that the <cite>login</cite> corresponds to the correct <cite>userId</cite> in Grafana.
+Passing a <cite>login</cite> of a different user might produce unexpected behavior.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="setup.html" class="btn btn-neutral float-right" title="Setup Script" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="yamlUtility.html" class="btn btn-neutral float-left" title="YAML Utility Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

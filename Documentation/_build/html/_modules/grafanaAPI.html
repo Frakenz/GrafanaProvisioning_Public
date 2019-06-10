@@ -1,0 +1,848 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>grafanaAPI &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="../_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>grafanaAPI</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for grafanaAPI</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module to use as interface with Grafana&#39;s API.</span>
+
+<span class="sd">This module is intended to be used by the Grafana Provisioning scripts to</span>
+<span class="sd">communicate with Grafana&#39;s API through HTTP requests. If you wish to use HTTPS</span>
+<span class="sd">all you need to do is add an `s` to the string returned by the _apiUrl function,</span>
+<span class="sd">note that this is not tested though.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">=====</span>
+<span class="sd">The default timeout for API requests is 5 seconds. This can be changed through</span>
+<span class="sd">the global variable `timeout`.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">=========</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">timeout</span> <span class="o">=</span> <span class="mi">5</span>  <span class="c1"># Default timeout</span>
+<span class="n">head</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">,</span> <span class="s1">&#39;Accept&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">methods</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;get&#39;</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">,</span>
+            <span class="s1">&#39;post&#39;</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span>
+            <span class="s1">&#39;put&#39;</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">,</span>
+            <span class="s1">&#39;delete&#39;</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">,</span>
+            <span class="s1">&#39;patch&#39;</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">_apiUrl</span><span class="p">(</span><span class="n">api</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return the url needed to make an API request with basic authentication.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    api : `str`</span>
+<span class="sd">        Suffix of the url. This should be the variable part of the API path that is</span>
+<span class="sd">        required in the url, i.e. what comes after ``[...]/api/``.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    url : `str`</span>
+<span class="sd">        The complete url to be used for API requests, including the credentials for</span>
+<span class="sd">        basic authentication.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    To use HTTPS you can change the string returned by this function at your own</span>
+<span class="sd">    discretion, because a valid certificate was not available at the time of</span>
+<span class="sd">    development, so this functionality has not been tested.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;http://</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@localhost:3000/api/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">api</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_req</span><span class="p">(</span><span class="n">requestFunction</span><span class="p">,</span> <span class="n">api</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">jsn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Make any kind of request to the Grafana API using basic authentication.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    requestFunction : `requests`.{`get`, `post`, `put`, `delete`, `patch`}</span>
+<span class="sd">        A requests function that can make an HTTP request with a certain method.</span>
+<span class="sd">    api : `str`</span>
+<span class="sd">        Suffix of the url. This should be the variable part of the API path that is</span>
+<span class="sd">        required in the url, i.e. what comes after ``http://[...]/api/``.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    jsn : `dict`</span>
+<span class="sd">        Contains the metadata that will be passed in JSON format with the API</span>
+<span class="sd">        request. This should be data that Grafana is prepared to receive. Optional.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    response : `requests.Response`</span>
+<span class="sd">        Response object containig the data returned by Grafana, including JSON data</span>
+<span class="sd">        as a string which can be converted to a dictionary with r.json(), and a</span>
+<span class="sd">        status code.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: incomplete or wrong data passed with `jsn`, the `api`</span>
+<span class="sd">        url or the `method` is wrong, invalid credentials (`user` and `password`),</span>
+<span class="sd">        the user doesn&#39;t have permission to make this request or the server is not</span>
+<span class="sd">        responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _apiUrl</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    Requests that return with a status code that represents an error are logged by</span>
+<span class="sd">    Grafana to ``/var/log/messages``.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">_apiUrl</span><span class="p">(</span><span class="n">api</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">jsn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requestFunction</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">head</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">requestFunction</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">jsn</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">head</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+    <span class="c1"># We do not use response.raise_for_status() since it could print the url</span>
+    <span class="c1"># (with the user and password) to stdout/stderr.</span>
+    <span class="k">if</span> <span class="mi">400</span> <span class="o">&lt;=</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">&lt;=</span> <span class="mi">599</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">APIError</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">response</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">None</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+
+<div class="viewcode-block" id="APIError"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.APIError">[docs]</a><span class="k">class</span> <span class="nc">APIError</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">RequestException</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Represents that an error occurred when executing an API request.</span>
+<span class="sd">    </span>
+<span class="sd">    This exception should be raised when an API request returns with a status code</span>
+<span class="sd">    in the 4XX or 5XX range. This mirrors the behavior of the default</span>
+<span class="sd">    requests.HTTPError, except that it doesn&#39;t print the user and password</span>
+<span class="sd">    contained in the url constituting the request (within the API, Grafana&#39;s admin</span>
+<span class="sd">    can only authenticate using the default authentication method for all of the</span>
+<span class="sd">    admin only functions, although this might change in the future).</span>
+<span class="sd">    </span>
+<span class="sd">    When raised with an HTTP ``response``, the exception prints out the status code</span>
+<span class="sd">    returned, the method used for the request (e.g. POST), the url to which the</span>
+<span class="sd">    request was made (without user and password) and the content of the response</span>
+<span class="sd">    made by Grafana.</span>
+<span class="sd">    </span>
+<span class="sd">    Used together, these four items can give enough information to understand what</span>
+<span class="sd">    request was being made and what went wrong with it.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the user who was making the API request. To be erased from the</span>
+<span class="sd">        url.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the user who was making the API request. To be erased from</span>
+<span class="sd">        the url.</span>
+<span class="sd">    response : `requests.Response`, optional</span>
+<span class="sd">        Response to the API request containing error information. If ignored, the</span>
+<span class="sd">        exception will not print an error message.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="o">=</span> <span class="n">response</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
+    
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return string representation of the error contained in the response.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        =======</span>
+<span class="sd">        errorMessage : `str`</span>
+<span class="sd">            String to be printed out when the exception is raised. If the response is</span>
+<span class="sd">            None this will be an empty string, or else it will be a concatenation of</span>
+<span class="sd">            the following items:</span>
+<span class="sd">            - ``code``: status code returned by the request (`int`).</span>
+<span class="sd">            - ``method``: method type of the HTTP request (`str`).</span>
+<span class="sd">            - ``url``: url of the request (`str`).</span>
+<span class="sd">            - ``msg``: string representation of the JSON response returned by the</span>
+<span class="sd">            request (`str`).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">@&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">password</span><span class="p">),</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">text</span>
+            <span class="n">code</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span>
+            <span class="n">method</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">method</span>
+            <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> | </span><span class="si">{}</span><span class="s1"> | </span><span class="si">{}</span><span class="s1"> | </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span></div>
+
+
+<div class="viewcode-block" id="request"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.request">[docs]</a><span class="k">def</span> <span class="nf">request</span><span class="p">(</span><span class="n">method</span><span class="p">,</span> <span class="n">api</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">jsn</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Make an api request with a string HTTP method, using basic authentication.</span>
+<span class="sd">    </span>
+<span class="sd">    Wrapper for internal _req function. This function receives an HTTP request</span>
+<span class="sd">    method as a string and passes it onto _req as a function.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    method : {&#39;get&#39;, &#39;post&#39;, &#39;put&#39;, &#39;delete&#39;, &#39;patch&#39;} (`str`)</span>
+<span class="sd">        An HTTP request method as a string.</span>
+<span class="sd">    api : `str`</span>
+<span class="sd">        Suffix of the url. This should be the variable part of the API path that is</span>
+<span class="sd">        required in the url, i.e. what comes after ``http://[...]/api/``.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    jsn : `dict`</span>
+<span class="sd">        Contains the metadata that will be passed in JSON format with the API</span>
+<span class="sd">        request. This should be data that Grafana is prepared to receive. Optional.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    response : `requests.Response`</span>
+<span class="sd">        Response object containig the data returned by Grafana, including JSON data</span>
+<span class="sd">        as a string which can be converted to a dictionary with r.json(), and a</span>
+<span class="sd">        status code.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Raised if the method passed does not correspond to one of the accepted</span>
+<span class="sd">        parameters.</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: incomplete or wrong data passed with `jsn`, the `api`</span>
+<span class="sd">        url or the `method` is wrong, invalid credentials (`user` and `password`),</span>
+<span class="sd">        the user doesn&#39;t have permission to make this request or the server is not</span>
+<span class="sd">        responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _apiUrl</span>
+<span class="sd">    _req</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    This function makes the script importing this module free to call a request</span>
+<span class="sd">    with an HTTP method as string instead of as a library function. This way we</span>
+<span class="sd">    separate implementation details from functionality.</span>
+<span class="sd">    </span>
+<span class="sd">    The `methods` dictionary is defined globally so that it does not need to be</span>
+<span class="sd">    created every time a request is made. It only contains the HTTP methods</span>
+<span class="sd">    currently used by the scripts.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">method</span> <span class="o">=</span> <span class="n">method</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_req</span><span class="p">(</span><span class="n">methods</span><span class="p">[</span><span class="n">method</span><span class="p">],</span> <span class="n">api</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">jsn</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The HTTP method requested does not exist or is not implemented.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="removeFromOrg"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.removeFromOrg">[docs]</a><span class="k">def</span> <span class="nf">removeFromOrg</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Remove a user from a Grafana organization.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        Number corresponding to the organization&#39;s ``id`` in Grafana.</span>
+<span class="sd">    userId : `int`</span>
+<span class="sd">        ``id`` of the user that is being removed from the Grafana organization.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    r : `requests.Response`</span>
+<span class="sd">        Response object containig the data returned by Grafana, including JSON data</span>
+<span class="sd">        as a string which can be converted to a dictionary with r.json(), and a</span>
+<span class="sd">        status code.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: invalid credentials (`user` and `password`), the user</span>
+<span class="sd">        doesn&#39;t have permission to make this request or the server is not</span>
+<span class="sd">        responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _req</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    This function is intended to be used when creating new accounts to remove them</span>
+<span class="sd">    from the default organization, and when creating new organizations to remove</span>
+<span class="sd">    the API account from them.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">delete</span><span class="p">,</span> <span class="s1">&#39;orgs/</span><span class="si">{}</span><span class="s1">/users/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">userId</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="setUserRoleOrg"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.setUserRoleOrg">[docs]</a><span class="k">def</span> <span class="nf">setUserRoleOrg</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">login</span><span class="p">,</span> <span class="n">newRole</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add a user to an org, with a role. Or set the role for a user in an org.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        Number corresponding to the organization&#39;s ``id`` in Grafana.</span>
+<span class="sd">    userId : `int`</span>
+<span class="sd">        ``id`` of the user who is being assigned a role on the Grafana org.</span>
+<span class="sd">    login : `str`</span>
+<span class="sd">        Grafana username (``login``) of the user who is being assingned a role.</span>
+<span class="sd">    newRole : {&#39;Admin&#39;, &#39;Editor&#39;, &#39;Viewer&#39;}</span>
+<span class="sd">        The role to be assigned to the user inside the organization.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: invalid `newRole`, inexistant organization or user, </span>
+<span class="sd">        wrong `login` regarding the given `userId`, invalid credentials (`user` and</span>
+<span class="sd">        `password`), the user doesn&#39;t have permission to make this request or the</span>
+<span class="sd">        server is not responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _req</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    In the future, if needed login can be turned into an optional parameter and it</span>
+<span class="sd">    can be fetched inside this function using `userId`. Currently the function</span>
+<span class="sd">    assumes that the `login` corresponds to the correct `userId` in Grafana.</span>
+<span class="sd">    Passing a `login` of a different user might produce unexpected behavior.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get list of orgs for user</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="s1">&#39;users/</span><span class="si">{}</span><span class="s1">/orgs&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userId</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">userOrgs</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    
+    <span class="c1"># Get the role for the user in the org if it exists</span>
+    <span class="n">currentRole</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">uo</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">uo</span> <span class="ow">in</span> <span class="n">userOrgs</span> <span class="k">if</span> <span class="n">uo</span><span class="p">[</span><span class="s1">&#39;orgId&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">orgId</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># If the account exists but it&#39;s not in the org, add them to the org with role</span>
+    <span class="n">newRole</span> <span class="o">=</span> <span class="n">newRole</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">currentRole</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;loginOrEmail&#39;</span><span class="p">:</span><span class="n">login</span><span class="p">,</span> <span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="n">newRole</span><span class="p">}</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="s1">&#39;orgs/</span><span class="si">{}</span><span class="s1">/users&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgId</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        
+        <span class="c1"># Change context organization for user</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="s1">&#39;users/</span><span class="si">{}</span><span class="s1">/using/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span> <span class="n">orgId</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        
+    <span class="c1"># If the user belongs to the org but the role has changed</span>
+    <span class="k">elif</span> <span class="n">currentRole</span> <span class="o">!=</span> <span class="n">newRole</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;role&#39;</span><span class="p">:</span><span class="n">newRole</span><span class="p">}</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">patch</span><span class="p">,</span> <span class="s1">&#39;orgs/</span><span class="si">{}</span><span class="s1">/users/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">userId</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="createAccount"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.createAccount">[docs]</a><span class="k">def</span> <span class="nf">createAccount</span><span class="p">(</span><span class="n">accountData</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a Grafana user account.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    accountData : `dict`</span>
+<span class="sd">        Dictionary with the data that Grafana can receive for account creation with</span>
+<span class="sd">        the API. Grafana 5.4.2 supports the following fields:</span>
+<span class="sd">        - ``login``: Username of the new user (`str`).</span>
+<span class="sd">        - ``password``: Password of the new user (`str`).</span>
+<span class="sd">        - ``name``: Name of the new user (`str`).</span>
+<span class="sd">        - ``email``: Email of the new user (`str`).</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    userId : `int`</span>
+<span class="sd">        Grafana ``id`` of the newly created user.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: The user already exists, email already in use, invalid</span>
+<span class="sd">        password or email, invalid credentials (`user` and `password`), the user</span>
+<span class="sd">        doesn&#39;t have permission to make this request or the server is not </span>
+<span class="sd">        responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _req</span>
+<span class="sd">    removeFromOrg</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r1</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="s1">&#39;admin/users&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">accountData</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">APIError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Failed to create user account: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accountData</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]))</span>
+        <span class="k">raise</span> <span class="n">exc</span>
+    
+    <span class="c1"># Remove user from default org</span>
+    <span class="n">userId</span> <span class="o">=</span> <span class="n">r1</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="n">removeFromOrg</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">userId</span></div>
+
+
+<div class="viewcode-block" id="createGrafanaAdmin"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.createGrafanaAdmin">[docs]</a><span class="k">def</span> <span class="nf">createGrafanaAdmin</span><span class="p">(</span><span class="n">accountData</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create an account with Grafana Admin privileges.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    accountData : `dict`</span>
+<span class="sd">        Dictionary with the data that Grafana can receive for account creation with</span>
+<span class="sd">        the API. Grafana 5.4.2 supports the following fields:</span>
+<span class="sd">        - ``login``: Username of the new user (`str`).</span>
+<span class="sd">        - ``password``: Password of the new user (`str`).</span>
+<span class="sd">        - ``name``: Name of the new user (`str`).</span>
+<span class="sd">        - ``email``: Email of the new user (`str`).</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    userId : `int`</span>
+<span class="sd">        Grafana ``id`` of the newly created user.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: The user already exists, email already in use, invalid</span>
+<span class="sd">        password or email, invalid credentials (`user` and `password`), the user</span>
+<span class="sd">        doesn&#39;t have permission to make this request or the server is not </span>
+<span class="sd">        responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    createAccount</span>
+<span class="sd">    _req</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">userId</span> <span class="o">=</span> <span class="n">createAccount</span><span class="p">(</span><span class="n">accountData</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;isGrafanaAdmin&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">put</span><span class="p">,</span> <span class="s1">&#39;admin/users/</span><span class="si">{}</span><span class="s1">/permissions&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">userId</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="getExistingUserId"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.getExistingUserId">[docs]</a><span class="k">def</span> <span class="nf">getExistingUserId</span><span class="p">(</span><span class="n">login</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the Grafana ``id`` of a user that already exists</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    login : `str`</span>
+<span class="sd">        Grafana (``login``) of the user for whom the ``id`` is being retrieved.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    id : `int`</span>
+<span class="sd">        Grafana ``id`` of the existing user.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: user doesn&#39;t exist, invalid credentials (`user` and</span>
+<span class="sd">        `password`), the user doesn&#39;t have permission to make this request or the</span>
+<span class="sd">        server is not responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _req</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    If the user doesn&#39;t exist and there is another user with an email that is equal</span>
+<span class="sd">    to this user&#39;s login name, that user will be retrieved instead.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="s1">&#39;users/lookup?loginOrEmail=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">login</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="createOrg"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.createOrg">[docs]</a><span class="k">def</span> <span class="nf">createOrg</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">mainAdmin</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a new Grafana organization.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgName : `str`</span>
+<span class="sd">        Name of the Grafana organization to be created.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        Number corresponding to the new organization&#39;s ``id`` in Grafana.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: an organization with that name already exists, invalid</span>
+<span class="sd">        credentials (`user` and `password`), the user doesn&#39;t have permission to</span>
+<span class="sd">        make this request or the server is not responding. Check the error messages</span>
+<span class="sd">        for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _req</span>
+<span class="sd">    setUserRoleOrg</span>
+<span class="sd">    getExistingUserId</span>
+<span class="sd">    removeFromOrg</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create the org and get the ID</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">orgName</span><span class="p">}</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">,</span> <span class="s1">&#39;orgs&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="n">orgId</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;orgId&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Add main admin to org</span>
+    <span class="n">setUserRoleOrg</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mainAdmin</span><span class="p">,</span> <span class="s1">&#39;Admin&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    
+    <span class="c1"># Remove API user from org</span>
+    <span class="n">apiId</span> <span class="o">=</span> <span class="n">getExistingUserId</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">removeFromOrg</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">apiId</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">orgId</span></div>
+
+
+<div class="viewcode-block" id="getOrgId"><a class="viewcode-back" href="../grafanaAPI.html#grafanaAPI.getOrgId">[docs]</a><span class="k">def</span> <span class="nf">getOrgId</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Obtain the ``id`` of a Grafana organization using its name.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgName : `str`</span>
+<span class="sd">        Name of the Grafana organization for which the ``id`` will be retrieved.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        Number corresponding to the organization&#39;s ``id`` in Grafana.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: an organization with that name doesn&#39;t exist, invalid</span>
+<span class="sd">        credentials (`user` and `password`), the user doesn&#39;t have permission to</span>
+<span class="sd">        make this request or the server is not responding. Check the error messages</span>
+<span class="sd">        for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    _req</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">_req</span><span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">,</span> <span class="s1">&#39;orgs/name/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">orgId</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">orgId</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

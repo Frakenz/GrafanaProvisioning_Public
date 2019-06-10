@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gpInputs &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="../_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>gpInputs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gpInputs</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Creates files/symlinks to provision orgs, users, datasources and dashboards.</span>
+
+<span class="sd">Input Files</span>
+<span class="sd">===========</span>
+<span class="sd">This script is meant to run it&#39;s main body on every Puppet execution. It will</span>
+<span class="sd">process files provided by users which should be stored in folders inside the</span>
+<span class="sd">``inputs`` directory. These folders represent Grafana organizations and should</span>
+<span class="sd">come with three files and a directory inside them:</span>
+
+<span class="sd"> 1. ``org.yaml``</span>
+<span class="sd"> 2. ``accounts.yaml``</span>
+<span class="sd"> 3. ``datasources.yaml``</span>
+<span class="sd"> 4. ``dashboards/``</span>
+
+<span class="sd">The specifications for these files are described on :ref:`input_structure`.</span>
+
+<span class="sd">Organization</span>
+<span class="sd">------------</span>
+<span class="sd">The script will create a symlink to this file in the ``orgs/`` directory.</span>
+
+<span class="sd">Accounts</span>
+<span class="sd">--------</span>
+<span class="sd">The script will create a symlink to this file in the ``accounts/`` directory.</span>
+
+<span class="sd">Datasources</span>
+<span class="sd">-----------</span>
+<span class="sd">The script will create the final version of this file inside</span>
+<span class="sd">`/etc/grafana/provisioning/datasources` which **will be read by grafana-server</span>
+<span class="sd">when it starts**.</span>
+
+<span class="sd">Dashboards</span>
+<span class="sd">----------</span>
+<span class="sd">The script will create a directory in the configured `dashboardsDir` where a</span>
+<span class="sd">directory for each folder will be created, inside them the JSON files will be</span>
+<span class="sd">copied, without the ID and UID of their dashboards. A YAML file will also be</span>
+<span class="sd">created inside `/etc/grafana/provisioning/dashboards/` which will contain the</span>
+<span class="sd">list of directories corresponding to this organization. The YAML file with the</span>
+<span class="sd">folder structure **will be read by grafana-server when it starts**, the</span>
+<span class="sd">dashboards inside them will be checked for changes inside the provided folders</span>
+<span class="sd">with a time period configured by `updateIntervalSeconds`.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">=====</span>
+<span class="sd">Provisioning configurations are stored in ``config.yaml``.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">=========</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">grafanaAPI</span> <span class="k">as</span> <span class="nn">gapi</span>
+<span class="kn">import</span> <span class="nn">yamlUtility</span> <span class="k">as</span> <span class="nn">yutil</span>
+
+
+<div class="viewcode-block" id="getDirList"><a class="viewcode-back" href="../inputs.html#gpInputs.getDirList">[docs]</a><span class="k">def</span> <span class="nf">getDirList</span><span class="p">(</span><span class="n">top</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get list of first level directories at `top`, excluding hidden folders.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    top : `str`</span>
+<span class="sd">        Path of the directory which will be scanned.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    dirs : `list` of `str`</span>
+<span class="sd">        List containing the directories found in the first level of `top` excluding</span>
+<span class="sd">        the ones that start with a period.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    os.walk</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">next</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">walk</span><span class="p">(</span><span class="n">top</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">d</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)]</span></div>
+
+
+<div class="viewcode-block" id="provisionOrg"><a class="viewcode-back" href="../inputs.html#gpInputs.provisionOrg">[docs]</a><span class="k">def</span> <span class="nf">provisionOrg</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">provisionedOrgs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Makes sure that the organization in Grafana is provisioned.</span>
+<span class="sd">    </span>
+<span class="sd">    If the organization already exists, get the org&#39;s id from Grafana. Else, create</span>
+<span class="sd">    the org in Grafana and the symlink to ``org.yaml`` inside ``orgs/``. Returns</span>
+<span class="sd">    the org&#39;s id and name.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgInputDir : `str`</span>
+<span class="sd">        The directory where the inputs for this org are stored.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    provisionedOrgs : `dict`</span>
+<span class="sd">        Dictionary containing all orgs in the provisioning configuration. Consists</span>
+<span class="sd">        of one key per org, where the key is the org&#39;s name and the value True for</span>
+<span class="sd">        all provisioned organizations. We use a dictionary instead of a list</span>
+<span class="sd">        because it should be faster for searching if an org is provisioned.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        ``id`` of the organization inside Grafana.</span>
+<span class="sd">    orgName: `str`</span>
+<span class="sd">        Name of the Grafana organization.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Raised if there is more than one organization with the same name in the</span>
+<span class="sd">        YAML configuration files or if ``org.yaml`` doesn&#39;t contain exactly one</span>
+<span class="sd">        organization. We do not support this feature. Different organizations</span>
+<span class="sd">        should come separately in different inputs.</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: the symlink in ``orgs/`` exists but the organization in</span>
+<span class="sd">        Grafana doesn&#39;t (in this case delete the symlink manually), the org already</span>
+<span class="sd">        exists in Grafana and the symlink doesn&#39;t, invalid credentials (`user` and</span>
+<span class="sd">        `password`), the user doesn&#39;t have permission to make this request or the</span>
+<span class="sd">        server is not responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    grafanaAPI.getOrgId</span>
+<span class="sd">    grafanaAPI.createOrg</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    The existance of the symlink should represent the state of the Grafana org: if</span>
+<span class="sd">    the symlink doesn&#39;t exist then the org shouldn&#39;t exist either, and if the </span>
+<span class="sd">    symlink exists the org should as well. If the creation of the org is</span>
+<span class="sd">    interrupted halfway through it will need to be deleted manually (or else we</span>
+<span class="sd">    could be deleting already existing orgs).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get Org name</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/org.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">)</span>
+    <span class="n">orgDict</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+    <span class="n">numOrgs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">orgDict</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">numOrgs</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;There must be 1 org in the configuration file and </span><span class="si">{}</span><span class="s1"> were found. </span><span class="si">{}</span><span class="s1">&#39;</span>
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numOrgs</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+    <span class="n">orgName</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">orgDict</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">orgName</span> <span class="ow">in</span> <span class="n">provisionedOrgs</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Duplicate organization </span><span class="si">{}</span><span class="s1"> in the yaml configuration. </span><span class="si">{}</span><span class="s1">/org.yaml&#39;</span>
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">orgInputDir</span><span class="p">))</span>
+    <span class="n">provisionedOrgs</span><span class="p">[</span><span class="n">orgName</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    
+    <span class="c1"># Check if org is provisioned (file or symlink exists in ./orgs)</span>
+    <span class="n">symlink</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/orgs/</span><span class="si">{}</span><span class="s1">_org.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">,</span> <span class="n">orgName</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">symlink</span><span class="p">):</span>
+        <span class="c1"># Get org&#39;s id</span>
+        <span class="n">orgId</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">getOrgId</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Add the symlink to org</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">symlink</span><span class="p">)</span>
+        <span class="c1"># Create org and get the id</span>
+        <span class="n">gadmin</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getSuperAdminLogin</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">orgId</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">createOrg</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">gadmin</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The operation failed while creating or configuring the  organization &quot;</span><span class="si">{}</span><span class="s1">&quot;. If the org was &#39;</span>
+                <span class="s1">&#39;created, you will need to delete it manually from Grafana. If your org already exists and &#39;</span>
+                <span class="s1">&#39;doesn</span><span class="se">\&#39;</span><span class="s1">t need to be created by the provisioning script, you can create a symlink called &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span>
+                <span class="s1">&#39;that points to &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">symlink</span><span class="p">,</span> <span class="n">file</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="n">exc</span>
+    <span class="k">return</span> <span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span></div>
+
+
+<div class="viewcode-block" id="provisionDatasources"><a class="viewcode-back" href="../inputs.html#gpInputs.provisionDatasources">[docs]</a><span class="k">def</span> <span class="nf">provisionDatasources</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">dSrcYaml</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create datasources config, which is read by grafana-server when it starts.</span>
+<span class="sd">    </span>
+<span class="sd">    Loads the configuration provided in ``org.yaml``, adds the corresponding</span>
+<span class="sd">    orgId and sets ``editable = false`` to each datasource. Also removes the</span>
+<span class="sd">    ``deleteDatasources`` field.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        ID of the org in Grafana to which the datasources will be provisioned.</span>
+<span class="sd">    orgName : `str`</span>
+<span class="sd">        Name of the org in Grafana to which the datasources will be provisioned.</span>
+<span class="sd">    dSrcYaml : `dict`</span>
+<span class="sd">        Contains the data required by Grafana to provision datasources. The two</span>
+<span class="sd">        required keys are:</span>
+<span class="sd">        </span>
+<span class="sd">        - apiVersion: Version of the input ``datasources.yaml`` file (`int`).</span>
+<span class="sd">        - datasources: List of datasources, with all the necessary configurations</span>
+<span class="sd">            except for `orgId` and ``editable``, which are added here.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the script does not have write permissions to</span>
+<span class="sd">        ``/etc/grafana/provisioning/datasources/```orgName```_datasources.yaml``</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    yamlUtility.writeYamlContent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># We don&#39;t want this functionality so we remove it</span>
+    <span class="k">if</span> <span class="s1">&#39;deleteDatasources&#39;</span> <span class="ow">in</span> <span class="n">dSrcYaml</span><span class="p">:</span>
+        <span class="k">del</span> <span class="n">dSrcYaml</span><span class="p">[</span><span class="s1">&#39;deleteDatasources&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Add parameters</span>
+    <span class="n">datasources</span> <span class="o">=</span> <span class="n">dSrcYaml</span><span class="p">[</span><span class="s1">&#39;datasources&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">dSrc</span> <span class="ow">in</span> <span class="n">datasources</span><span class="p">:</span>
+        <span class="n">dSrc</span><span class="p">[</span><span class="s1">&#39;orgId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">orgId</span>
+        <span class="n">dSrc</span><span class="p">[</span><span class="s1">&#39;editable&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+    
+    <span class="c1"># Provision datasources to Grafana&#39;s installation folder</span>
+    <span class="n">yutil</span><span class="o">.</span><span class="n">writeYamlContent</span><span class="p">(</span><span class="s1">&#39;/etc/grafana/provisioning/datasources/</span><span class="si">{}</span><span class="s1">_datasources.yaml&#39;</span>
+        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">),</span> <span class="n">dSrcYaml</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="copyDashboardWithoutIds"><a class="viewcode-back" href="../inputs.html#gpInputs.copyDashboardWithoutIds">[docs]</a><span class="k">def</span> <span class="nf">copyDashboardWithoutIds</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">dest</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load source JSON file, delete ID and UID, and save the dashboard at dest.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    source : `str`</span>
+<span class="sd">        Path to input JSON file containing a dashboard.</span>
+<span class="sd">    dest : `str`</span>
+<span class="sd">        Path to output JSON file, the dashboard to be provisioned at dashboardsDir.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if `source` does not exist or it cannot be accessed by the script.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the script does not have permission to read from `source` or to</span>
+<span class="sd">        write to `dest`.</span>
+<span class="sd">    JSONDecodeError:</span>
+<span class="sd">        Raised if `source` does not contain a valid JSON format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dashboard</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">dashboard</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The dashboard at </span><span class="si">{}</span><span class="s1"> does not contain a valid JSON format.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">source</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">exc</span> <span class="kn">from</span> <span class="nn">None</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;uid&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">dest</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">dashboard</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dashboard</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="needsProvisioning"><a class="viewcode-back" href="../inputs.html#gpInputs.needsProvisioning">[docs]</a><span class="k">def</span> <span class="nf">needsProvisioning</span><span class="p">(</span><span class="n">inputFile</span><span class="p">,</span> <span class="n">currentFile</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Check if source is newer than dest.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    inputFile : `str`</span>
+<span class="sd">        File in the input folder.</span>
+<span class="sd">    currentFile : `str`</span>
+<span class="sd">        File created by this script for provisioning Grafana.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    inputIsNewer : `bool`</span>
+<span class="sd">        True if input file is newer than current provisioning file, else False.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># time since last modification of file (float)</span>
+    <span class="n">inputModified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">inputFile</span><span class="p">))</span>
+    <span class="n">currentModified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">currentFile</span><span class="p">))</span>
+    
+    <span class="k">return</span> <span class="n">inputModified</span> <span class="o">&gt;</span> <span class="n">currentModified</span></div>
+
+
+<div class="viewcode-block" id="provisionDashboards"><a class="viewcode-back" href="../inputs.html#gpInputs.provisionDashboards">[docs]</a><span class="k">def</span> <span class="nf">provisionDashboards</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">,</span> <span class="n">orgInputDir</span><span class="p">,</span> <span class="n">dashboardsDir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Maintain the correct dashboards inside the folders in dashboardsDir.</span>
+<span class="sd">    </span>
+<span class="sd">    Copy dashboards to dashboardsDir without ID and UID when they need to be</span>
+<span class="sd">    copied. Delete dashboards from dashboardsDir which do not exist in the input.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgName : `str`</span>
+<span class="sd">        Name of the org in Grafana to which the dashboards will be provisioned.</span>
+<span class="sd">    grafanaFolders : `list` of `str`</span>
+<span class="sd">        List containing the names of the folders that are going to be provisioned.</span>
+<span class="sd">        Just the folder names, not full paths.</span>
+<span class="sd">    orgInputDir : `str`</span>
+<span class="sd">        The directory where the inputs for the given org are stored.</span>
+<span class="sd">    dashboardsDir : `str`</span>
+<span class="sd">        The directory where Grafana will look for provisioned dashboards.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if one or more of the parameters conforms a path that doesn&#39;t exist.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the script does not have permission to read dashboards from the</span>
+<span class="sd">        input, or to write to dashboards in the dashboardsDir.</span>
+<span class="sd">    JSONDecodeError:</span>
+<span class="sd">        Raised if an input dashboard does not contain a valid JSON format.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">folder</span> <span class="ow">in</span> <span class="n">grafanaFolders</span><span class="p">:</span>
+        <span class="n">srcDbs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/dashboards/</span><span class="si">{}</span><span class="s1">/*.json&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">,</span> <span class="n">folder</span><span class="p">))</span>
+        
+        <span class="n">destDir</span> <span class="o">=</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dashboardsDir</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">folder</span><span class="p">)</span>
+        <span class="n">destDbs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/*.json&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">destDir</span><span class="p">))</span>
+        
+        <span class="n">shortSrcDbs</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">dashboard</span><span class="p">)</span> <span class="k">for</span> <span class="n">dashboard</span> <span class="ow">in</span> <span class="n">srcDbs</span><span class="p">]</span>
+        <span class="n">shortDestDbs</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">dashboard</span><span class="p">)</span> <span class="k">for</span> <span class="n">dashboard</span> <span class="ow">in</span> <span class="n">destDbs</span><span class="p">]</span>
+        
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">shortSrcDbs</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">shortSrcDbs</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="ow">in</span> <span class="n">shortDestDbs</span><span class="p">:</span>
+                <span class="n">i</span> <span class="o">=</span> <span class="n">shortDestDbs</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">shortSrcDbs</span><span class="p">[</span><span class="n">d</span><span class="p">])</span>
+                <span class="k">if</span> <span class="n">needsProvisioning</span><span class="p">(</span><span class="n">srcDbs</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">destDbs</span><span class="p">[</span><span class="n">i</span><span class="p">]):</span>
+                    <span class="n">copyDashboardWithoutIds</span><span class="p">(</span><span class="n">srcDbs</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="n">destDbs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">copyDashboardWithoutIds</span><span class="p">(</span><span class="n">srcDbs</span><span class="p">[</span><span class="n">d</span><span class="p">],</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">destDir</span><span class="p">,</span> <span class="n">shortSrcDbs</span><span class="p">[</span><span class="n">d</span><span class="p">]))</span>
+        
+        <span class="c1"># Remove deleted files from provisioning</span>
+        <span class="k">for</span> <span class="n">old</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">destDbs</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">shortDestDbs</span><span class="p">[</span><span class="n">old</span><span class="p">]</span> <span class="ow">in</span> <span class="n">shortSrcDbs</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">destDbs</span><span class="p">[</span><span class="n">old</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="provisionFolders"><a class="viewcode-back" href="../inputs.html#gpInputs.provisionFolders">[docs]</a><span class="k">def</span> <span class="nf">provisionFolders</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">,</span> <span class="n">orgInputDir</span><span class="p">,</span> <span class="n">dashboardsDir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create folder structure in dashboardsDir and configure each folder route.</span>
+<span class="sd">    </span>
+<span class="sd">    Uses ``dashboardRoutesTemplate.yaml`` as a template to create the folder</span>
+<span class="sd">    routes.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        ID of the org in Grafana to which the dashboards will be provisioned.</span>
+<span class="sd">    orgName : `str`</span>
+<span class="sd">        Name of the org in Grafana to which the dashboards will be provisioned.</span>
+<span class="sd">    grafanaFolders : `list` of `str`</span>
+<span class="sd">        List containing the names of the folders that are going to be provisioned.</span>
+<span class="sd">        Just the folder names, not full paths.</span>
+<span class="sd">    orgInputDir : `str`</span>
+<span class="sd">        The directory where the inputs for the given org are stored.</span>
+<span class="sd">    dashboardsDir : `str`</span>
+<span class="sd">        The directory where Grafana will look for provisioned dashboards.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if the template contains an invalid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the script does not have read permissions on the template, or</span>
+<span class="sd">        if it doesn&#39;t have write permissions to the configured ``dashboardsDir`` or</span>
+<span class="sd">        ``/etc/grafana/provisioning/dashboards/``</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if the template doesn&#39;t exist or it can&#39;t be accessed by the script.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    yamlUtility.getYamlContent</span>
+<span class="sd">    yamlUtility.writeYamlContent</span>
+<span class="sd">    os.makedirs</span>
+<span class="sd">    os.symlink</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    The folder configuration is read by grafana-server when it starts. The</span>
+<span class="sd">    dashboards in the folders will be checked periodically for updates by Grafana.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="n">routeYaml</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/dbRoutesTemplate.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    
+    <span class="c1"># Create org directory</span>
+    <span class="n">orgDashboardsPath</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">dashboardsDir</span><span class="p">,</span> <span class="n">orgName</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">orgDashboardsPath</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Delete removed folders and their contents</span>
+    <span class="n">existingFolders</span> <span class="o">=</span> <span class="n">getDirList</span><span class="p">(</span><span class="n">orgDashboardsPath</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">existingFolders</span><span class="p">)</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">grafanaFolders</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">oldFolder</span> <span class="ow">in</span> <span class="n">diff</span><span class="p">:</span>
+        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgDashboardsPath</span><span class="p">,</span> <span class="n">oldFolder</span><span class="p">))</span>
+    
+    <span class="n">providerTemplate</span> <span class="o">=</span> <span class="n">routeYaml</span><span class="p">[</span><span class="s1">&#39;providers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">routeYaml</span><span class="p">[</span><span class="s1">&#39;providers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">grafanaFolders</span><span class="p">)):</span>
+        <span class="n">provider</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">providerTemplate</span><span class="p">)</span>
+        <span class="c1"># Route to where the dashboards are going to be stored</span>
+        <span class="n">folderPath</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgDashboardsPath</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">provider</span><span class="p">[</span><span class="s1">&#39;options&#39;</span><span class="p">][</span><span class="s1">&#39;path&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">folderPath</span>
+        
+        <span class="n">provider</span><span class="p">[</span><span class="s1">&#39;updateIntervalSeconds&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;updateIntervalSeconds&#39;</span><span class="p">]</span>
+        <span class="n">provider</span><span class="p">[</span><span class="s1">&#39;orgId&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">orgId</span>
+        <span class="n">provider</span><span class="p">[</span><span class="s1">&#39;folder&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grafanaFolders</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">provider</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">_</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        
+        <span class="n">routeYaml</span><span class="p">[</span><span class="s1">&#39;providers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+        
+        <span class="c1"># Create directory for this Grafana Folder</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folderPath</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">folderPath</span><span class="p">)</span>
+    
+    <span class="n">yutil</span><span class="o">.</span><span class="n">writeYamlContent</span><span class="p">(</span><span class="s1">&#39;/etc/grafana/provisioning/dashboards/</span><span class="si">{}</span><span class="s1">_dashboardRoutes.yaml&#39;</span>
+        <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">),</span> <span class="n">routeYaml</span><span class="p">)</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">gapi</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">]</span>
+    <span class="n">provisioningDir</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;provisioningDir&#39;</span><span class="p">]</span>
+    <span class="n">inputsDir</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/inputs&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">)</span>
+    <span class="n">dashboardsDir</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dashboardsDir&#39;</span><span class="p">]</span>
+    
+    <span class="n">user</span><span class="p">,</span> <span class="n">password</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getApiCredentials</span><span class="p">()</span>
+    
+    <span class="c1"># Get folder names, these are inputs from different organizations</span>
+    <span class="n">dirs</span> <span class="o">=</span> <span class="n">getDirList</span><span class="p">(</span><span class="n">inputsDir</span><span class="p">)</span>
+    
+    <span class="c1"># Loop through organizations</span>
+    <span class="n">provisionedOrgs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">org</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+        <span class="n">orgInputDir</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">inputsDir</span><span class="p">,</span> <span class="n">org</span><span class="p">)</span>
+        
+        <span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span> <span class="o">=</span> <span class="n">provisionOrg</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">provisionedOrgs</span><span class="p">)</span>
+        
+        <span class="c1"># Make symlink for account file</span>
+        <span class="n">symlink</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/accounts/</span><span class="si">{}</span><span class="s1">_accounts.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">,</span> <span class="n">orgName</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">symlink</span><span class="p">):</span>
+            <span class="c1"># If the symlink exists but is broken, remove it to add the new one</span>
+            <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">lexists</span><span class="p">(</span><span class="n">symlink</span><span class="p">):</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">symlink</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">symlink</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/accounts.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">),</span> <span class="n">symlink</span><span class="p">)</span>
+        
+        <span class="c1"># Check if there is something new to provision</span>
+        <span class="n">stateFile</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/.state.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">stateFile</span><span class="p">):</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="n">stateFile</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="p">{}</span>
+        
+        <span class="c1"># Datasources</span>
+        <span class="n">dSrcFile</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">,</span> <span class="s1">&#39;datasources.yaml&#39;</span><span class="p">)</span>
+        <span class="n">dSrcYaml</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="n">dSrcFile</span><span class="p">)</span>
+        <span class="n">modified</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">now</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;datasourcesDate&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+            <span class="c1"># time since last modification of file (float)</span>
+            <span class="n">lastModified</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcfromtimestamp</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">dSrcFile</span><span class="p">))</span>
+            <span class="n">lastProvisioned</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s1">&#39;datasourcesDate&#39;</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1">T%H:%M:%S&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">lastModified</span> <span class="o">&gt;</span> <span class="n">lastProvisioned</span><span class="p">:</span>
+                <span class="n">provisionDatasources</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">dSrcYaml</span><span class="p">)</span>
+                <span class="n">state</span><span class="p">[</span><span class="s1">&#39;datasourcesDate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">)</span>
+                <span class="n">modified</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">provisionDatasources</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">dSrcYaml</span><span class="p">)</span>
+            <span class="n">state</span><span class="p">[</span><span class="s1">&#39;datasourcesDate&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">now</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">)</span>
+            <span class="n">modified</span> <span class="o">=</span> <span class="kc">True</span>
+        
+        <span class="c1"># Dashboards</span>
+        <span class="n">grafanaFolders</span> <span class="o">=</span> <span class="n">getDirList</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/dashboards&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">))</span>
+        <span class="n">grafanaFolders</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+        <span class="k">if</span> <span class="s1">&#39;dashboardFolders&#39;</span> <span class="ow">in</span> <span class="n">state</span><span class="p">:</span>
+            <span class="c1"># We sort them both to not depend on implementation details,</span>
+            <span class="c1"># but they seem to come sorted from the beginning</span>
+            <span class="n">state</span><span class="p">[</span><span class="s1">&#39;dashboardFolders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">state</span><span class="p">[</span><span class="s1">&#39;dashboardFolders&#39;</span><span class="p">]</span> <span class="o">!=</span> <span class="n">grafanaFolders</span><span class="p">:</span>
+                <span class="n">provisionFolders</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">,</span> <span class="n">orgInputDir</span><span class="p">,</span> <span class="n">dashboardsDir</span><span class="p">)</span>
+                <span class="n">state</span><span class="p">[</span><span class="s1">&#39;dashboardFolders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grafanaFolders</span>
+                <span class="n">modified</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">provisionFolders</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">orgName</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">,</span> <span class="n">orgInputDir</span><span class="p">,</span> <span class="n">dashboardsDir</span><span class="p">)</span>
+            <span class="n">state</span><span class="p">[</span><span class="s1">&#39;dashboardFolders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">grafanaFolders</span>
+            <span class="n">modified</span> <span class="o">=</span> <span class="kc">True</span>
+            
+        <span class="n">provisionDashboards</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">grafanaFolders</span><span class="p">,</span> <span class="n">orgInputDir</span><span class="p">,</span> <span class="n">dashboardsDir</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">modified</span><span class="p">:</span>
+            <span class="n">yutil</span><span class="o">.</span><span class="n">writeYamlContent</span><span class="p">(</span><span class="n">stateFile</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span>
+            
+            <span class="n">ignorePath</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/.gitignore&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgInputDir</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">ignorePath</span><span class="p">):</span>
+                <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">ignorePath</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">ignore</span><span class="p">:</span>
+                    <span class="n">ignore</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;.state.yaml</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            
+            <span class="c1"># Tell Puppet to restart Grafana.</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/restart.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">restart</span><span class="p">:</span>
+                <span class="n">restart</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;restart</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

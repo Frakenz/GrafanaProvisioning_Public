@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Input Script &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Accounts Script" href="accounts.html" />
+    <link rel="prev" title="Setup Script" href="setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Input Script</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/inputs.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="accounts.html" class="btn btn-neutral float-right" title="Accounts Script" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral float-left" title="Setup Script" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-gpInputs">
+<span id="input-script"></span><h1>Input Script<a class="headerlink" href="#module-gpInputs" title="Permalink to this headline">¶</a></h1>
+<p>Creates files/symlinks to provision orgs, users, datasources and dashboards.</p>
+<div class="section" id="input-files">
+<h2>Input Files<a class="headerlink" href="#input-files" title="Permalink to this headline">¶</a></h2>
+<p>This script is meant to run it’s main body on every Puppet execution. It will
+process files provided by users which should be stored in folders inside the
+<code class="docutils literal notranslate"><span class="pre">inputs</span></code> directory. These folders represent Grafana organizations and should
+come with three files and a directory inside them:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><code class="docutils literal notranslate"><span class="pre">org.yaml</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">accounts.yaml</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">datasources.yaml</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">dashboards/</span></code></li>
+</ol>
+</div></blockquote>
+<p>The specifications for these files are described on <a class="reference internal" href="inputStructure.html#input-structure"><span class="std std-ref">Input Structure</span></a>.</p>
+<div class="section" id="organization">
+<h3>Organization<a class="headerlink" href="#organization" title="Permalink to this headline">¶</a></h3>
+<p>The script will create a symlink to this file in the <code class="docutils literal notranslate"><span class="pre">orgs/</span></code> directory.</p>
+</div>
+<div class="section" id="accounts">
+<h3>Accounts<a class="headerlink" href="#accounts" title="Permalink to this headline">¶</a></h3>
+<p>The script will create a symlink to this file in the <code class="docutils literal notranslate"><span class="pre">accounts/</span></code> directory.</p>
+</div>
+<div class="section" id="datasources">
+<h3>Datasources<a class="headerlink" href="#datasources" title="Permalink to this headline">¶</a></h3>
+<p>The script will create the final version of this file inside
+<cite>/etc/grafana/provisioning/datasources</cite> which <strong>will be read by grafana-server
+when it starts</strong>.</p>
+</div>
+<div class="section" id="dashboards">
+<h3>Dashboards<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h3>
+<p>The script will create a directory in the configured <cite>dashboardsDir</cite> where a
+directory for each folder will be created, inside them the JSON files will be
+copied, without the ID and UID of their dashboards. A YAML file will also be
+created inside <cite>/etc/grafana/provisioning/dashboards/</cite> which will contain the
+list of directories corresponding to this organization. The YAML file with the
+folder structure <strong>will be read by grafana-server when it starts</strong>, the
+dashboards inside them will be checked for changes inside the provided folders
+with a time period configured by <cite>updateIntervalSeconds</cite>.</p>
+</div>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>Provisioning configurations are stored in <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code>.</p>
+</div>
+<div class="section" id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="gpInputs.copyDashboardWithoutIds">
+<code class="descclassname">gpInputs.</code><code class="descname">copyDashboardWithoutIds</code><span class="sig-paren">(</span><em>source</em>, <em>dest</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#copyDashboardWithoutIds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.copyDashboardWithoutIds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load source JSON file, delete ID and UID, and save the dashboard at dest.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>source</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Path to input JSON file containing a dashboard.</p>
+</dd>
+<dt><strong>dest</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Path to output JSON file, the dashboard to be provisioned at dashboardsDir.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>FileNotFoundError:</strong></dt>
+<dd><p class="first last">Raised if <cite>source</cite> does not exist or it cannot be accessed by the script.</p>
+</dd>
+<dt><strong>PermissionError:</strong></dt>
+<dd><p class="first last">Raised if the script does not have permission to read from <cite>source</cite> or to
+write to <cite>dest</cite>.</p>
+</dd>
+<dt><strong>JSONDecodeError:</strong></dt>
+<dd><p class="first last">Raised if <cite>source</cite> does not contain a valid JSON format.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gpInputs.getDirList">
+<code class="descclassname">gpInputs.</code><code class="descname">getDirList</code><span class="sig-paren">(</span><em>top</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#getDirList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.getDirList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get list of first level directories at <cite>top</cite>, excluding hidden folders.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>top</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Path of the directory which will be scanned.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>dirs</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>list</cite> of <cite>str</cite></span></dt>
+<dd><p class="first last">List containing the directories found in the first level of <cite>top</cite> excluding
+the ones that start with a period.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><code class="xref py py-obj docutils literal notranslate"><span class="pre">os.walk</span></code></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gpInputs.needsProvisioning">
+<code class="descclassname">gpInputs.</code><code class="descname">needsProvisioning</code><span class="sig-paren">(</span><em>inputFile</em>, <em>currentFile</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#needsProvisioning"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.needsProvisioning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if source is newer than dest.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>inputFile</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">File in the input folder.</p>
+</dd>
+<dt><strong>currentFile</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">File created by this script for provisioning Grafana.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>inputIsNewer</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>bool</cite></span></dt>
+<dd><p class="first last">True if input file is newer than current provisioning file, else False.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gpInputs.provisionDashboards">
+<code class="descclassname">gpInputs.</code><code class="descname">provisionDashboards</code><span class="sig-paren">(</span><em>orgName</em>, <em>grafanaFolders</em>, <em>orgInputDir</em>, <em>dashboardsDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#provisionDashboards"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.provisionDashboards" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maintain the correct dashboards inside the folders in dashboardsDir.</p>
+<p>Copy dashboards to dashboardsDir without ID and UID when they need to be
+copied. Delete dashboards from dashboardsDir which do not exist in the input.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgName</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Name of the org in Grafana to which the dashboards will be provisioned.</p>
+</dd>
+<dt><strong>grafanaFolders</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>list</cite> of <cite>str</cite></span></dt>
+<dd><p class="first last">List containing the names of the folders that are going to be provisioned.
+Just the folder names, not full paths.</p>
+</dd>
+<dt><strong>orgInputDir</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">The directory where the inputs for the given org are stored.</p>
+</dd>
+<dt><strong>dashboardsDir</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">The directory where Grafana will look for provisioned dashboards.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>FileNotFoundError:</strong></dt>
+<dd><p class="first last">Raised if one or more of the parameters conforms a path that doesn’t exist.</p>
+</dd>
+<dt><strong>PermissionError:</strong></dt>
+<dd><p class="first last">Raised if the script does not have permission to read dashboards from the
+input, or to write to dashboards in the dashboardsDir.</p>
+</dd>
+<dt><strong>JSONDecodeError:</strong></dt>
+<dd><p class="first last">Raised if an input dashboard does not contain a valid JSON format.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="gpInputs.provisionDatasources">
+<code class="descclassname">gpInputs.</code><code class="descname">provisionDatasources</code><span class="sig-paren">(</span><em>orgId</em>, <em>orgName</em>, <em>dSrcYaml</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#provisionDatasources"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.provisionDatasources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create datasources config, which is read by grafana-server when it starts.</p>
+<p>Loads the configuration provided in <code class="docutils literal notranslate"><span class="pre">org.yaml</span></code>, adds the corresponding
+orgId and sets <code class="docutils literal notranslate"><span class="pre">editable</span> <span class="pre">=</span> <span class="pre">false</span></code> to each datasource. Also removes the
+<code class="docutils literal notranslate"><span class="pre">deleteDatasources</span></code> field.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">ID of the org in Grafana to which the datasources will be provisioned.</p>
+</dd>
+<dt><strong>orgName</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Name of the org in Grafana to which the datasources will be provisioned.</p>
+</dd>
+<dt><strong>dSrcYaml</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite></span></dt>
+<dd><p class="first">Contains the data required by Grafana to provision datasources. The two
+required keys are:</p>
+<ul class="last simple">
+<li>apiVersion: Version of the input <code class="docutils literal notranslate"><span class="pre">datasources.yaml</span></code> file (<cite>int</cite>).</li>
+<li><dl class="first docutils">
+<dt>datasources: List of datasources, with all the necessary configurations</dt>
+<dd>except for <cite>orgId</cite> and <code class="docutils literal notranslate"><span class="pre">editable</span></code>, which are added here.</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>PermissionError:</strong></dt>
+<dd><p class="first last">Raised if the script does not have write permissions to
+<code class="docutils literal notranslate"><span class="pre">/etc/grafana/provisioning/datasources/```orgName```_datasources.yaml</span></code></p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="yamlUtility.html#yamlUtility.writeYamlContent" title="yamlUtility.writeYamlContent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">yamlUtility.writeYamlContent</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="gpInputs.provisionFolders">
+<code class="descclassname">gpInputs.</code><code class="descname">provisionFolders</code><span class="sig-paren">(</span><em>orgId</em>, <em>orgName</em>, <em>grafanaFolders</em>, <em>orgInputDir</em>, <em>dashboardsDir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#provisionFolders"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.provisionFolders" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create folder structure in dashboardsDir and configure each folder route.</p>
+<p>Uses <code class="docutils literal notranslate"><span class="pre">dashboardRoutesTemplate.yaml</span></code> as a template to create the folder
+routes.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last">ID of the org in Grafana to which the dashboards will be provisioned.</p>
+</dd>
+<dt><strong>orgName</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Name of the org in Grafana to which the dashboards will be provisioned.</p>
+</dd>
+<dt><strong>grafanaFolders</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>list</cite> of <cite>str</cite></span></dt>
+<dd><p class="first last">List containing the names of the folders that are going to be provisioned.
+Just the folder names, not full paths.</p>
+</dd>
+<dt><strong>orgInputDir</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">The directory where the inputs for the given org are stored.</p>
+</dd>
+<dt><strong>dashboardsDir</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">The directory where Grafana will look for provisioned dashboards.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>yaml.YAMLError</strong></dt>
+<dd><p class="first last">Raised if the template contains an invalid YAML format.</p>
+</dd>
+<dt><strong>PermissionError:</strong></dt>
+<dd><p class="first last">Raised if the script does not have read permissions on the template, or
+if it doesn’t have write permissions to the configured <code class="docutils literal notranslate"><span class="pre">dashboardsDir</span></code> or
+<code class="docutils literal notranslate"><span class="pre">/etc/grafana/provisioning/dashboards/</span></code></p>
+</dd>
+<dt><strong>FileNotFoundError:</strong></dt>
+<dd><p class="first last">Raised if the template doesn’t exist or it can’t be accessed by the script.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="yamlUtility.html#yamlUtility.getYamlContent" title="yamlUtility.getYamlContent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">yamlUtility.getYamlContent</span></code></a>, <a class="reference internal" href="yamlUtility.html#yamlUtility.writeYamlContent" title="yamlUtility.writeYamlContent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">yamlUtility.writeYamlContent</span></code></a>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">os.makedirs</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">os.symlink</span></code></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The folder configuration is read by grafana-server when it starts. The
+dashboards in the folders will be checked periodically for updates by Grafana.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="gpInputs.provisionOrg">
+<code class="descclassname">gpInputs.</code><code class="descname">provisionOrg</code><span class="sig-paren">(</span><em>orgInputDir</em>, <em>user</em>, <em>password</em>, <em>provisionedOrgs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/gpInputs.html#provisionOrg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#gpInputs.provisionOrg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes sure that the organization in Grafana is provisioned.</p>
+<p>If the organization already exists, get the org’s id from Grafana. Else, create
+the org in Grafana and the symlink to <code class="docutils literal notranslate"><span class="pre">org.yaml</span></code> inside <code class="docutils literal notranslate"><span class="pre">orgs/</span></code>. Returns
+the org’s id and name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgInputDir</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">The directory where the inputs for this org are stored.</p>
+</dd>
+<dt><strong>user</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">login</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>password</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">password</span></code> of the Grafana account that is making the API request.</p>
+</dd>
+<dt><strong>provisionedOrgs</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>dict</cite></span></dt>
+<dd><p class="first last">Dictionary containing all orgs in the provisioning configuration. Consists
+of one key per org, where the key is the org’s name and the value True for
+all provisioned organizations. We use a dictionary instead of a list
+because it should be faster for searching if an org is provisioned.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><dl class="first docutils">
+<dt><strong>orgId</strong> <span class="classifier-delimiter">:</span> <span class="classifier"><cite>int</cite></span></dt>
+<dd><p class="first last"><code class="docutils literal notranslate"><span class="pre">id</span></code> of the organization inside Grafana.</p>
+</dd>
+<dt><strong>orgName: `str`</strong></dt>
+<dd><p class="first last">Name of the Grafana organization.</p>
+</dd>
+</dl>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><dl class="first last docutils">
+<dt><strong>ValueError</strong></dt>
+<dd><p class="first last">Raised if there is more than one organization with the same name in the
+YAML configuration files or if <code class="docutils literal notranslate"><span class="pre">org.yaml</span></code> doesn’t contain exactly one
+organization. We do not support this feature. Different organizations
+should come separately in different inputs.</p>
+</dd>
+<dt><strong>grafanaAPI.APIError</strong></dt>
+<dd><p class="first last">Raised if the request replies with a status code in the 4XX or 5XX range.
+The causes include: the symlink in <code class="docutils literal notranslate"><span class="pre">orgs/</span></code> exists but the organization in
+Grafana doesn’t (in this case delete the symlink manually), the org already
+exists in Grafana and the symlink doesn’t, invalid credentials (<cite>user</cite> and
+<cite>password</cite>), the user doesn’t have permission to make this request or the
+server is not responding. Check the error messages for more information.</p>
+</dd>
+</dl>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="grafanaAPI.html#grafanaAPI.getOrgId" title="grafanaAPI.getOrgId"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grafanaAPI.getOrgId</span></code></a>, <a class="reference internal" href="grafanaAPI.html#grafanaAPI.createOrg" title="grafanaAPI.createOrg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">grafanaAPI.createOrg</span></code></a></p>
+</div>
+<p class="rubric">Notes</p>
+<p>The existance of the symlink should represent the state of the Grafana org: if
+the symlink doesn’t exist then the org shouldn’t exist either, and if the 
+symlink exists the org should as well. If the creation of the org is
+interrupted halfway through it will need to be deleted manually (or else we
+could be deleting already existing orgs).</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="accounts.html" class="btn btn-neutral float-right" title="Accounts Script" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="setup.html" class="btn btn-neutral float-left" title="Setup Script" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

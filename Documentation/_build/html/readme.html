@@ -1,0 +1,663 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Server Configuration &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Provisioning Grafana Organizations" href="inputStructure.html" />
+    <link rel="prev" title="Grafana Provisioning" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Server Configuration</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/readme.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="inputStructure.html" class="btn btn-neutral float-right" title="Provisioning Grafana Organizations" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Grafana Provisioning" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="server-configuration">
+<h1>Server Configuration<a class="headerlink" href="#server-configuration" title="Permalink to this headline">¶</a></h1>
+<p>To be used on CentOS 7 with Grafana 5.4.2 or greater. Grafana is expected to be
+installed on <code class="docutils literal notranslate"><span class="pre">/etc/grafana</span></code>.</p>
+<div class="section" id="configuration">
+<span id="id1"></span><h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>The project will be stored and ran in a directory in the server. This is called
+the <code class="docutils literal notranslate"><span class="pre">main</span> <span class="pre">directory</span></code> and will be set on <a class="reference internal" href="#r4"><span class="std std-ref">installation</span></a>. All
+relative paths in this document are relative to the <code class="docutils literal notranslate"><span class="pre">main</span> <span class="pre">directory</span></code>.</p>
+<div class="section" id="general-configuration">
+<h3>General Configuration<a class="headerlink" href="#general-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>config.yaml</cite> file contains the following settings, which are all required:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt><cite>dashboardsDir</cite>:</dt>
+<dd>Base directory where Grafana provisioned dashboards will be
+stored. The provisioning project will create subfolders and symlinks inside
+to organize Grafana organizations and their provisioned folders.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>provisioningDir</cite>:</dt>
+<dd><cite>*</cite> <code class="docutils literal notranslate"><span class="pre">main</span> <span class="pre">directory</span></code>, where the project’s files reside.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>timeout</cite>:</dt>
+<dd>Maximum time in seconds to wait for API requests when not receiving
+a reply. Will end the program execution if reached.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>updateIntervalSeconds</cite>:</dt>
+<dd>How often Grafana will scan for changed dashboards.
+Once a folder is provisioned, if the need arises to change this it must be
+done so manually in a YAML file inside Grafana’s installation directory.</dd>
+</dl>
+</li>
+</ul>
+<p><cite>*</cite> This functionality has been made optional because now the program detects
+its directory automatically. Since there was not enough time to test this
+thoroughly, the option to set it manually is still available. Only set this if
+you are seeing file not found errors pointing to the wrong directory.</p>
+</div>
+<div class="section" id="grafana-admin-accounts">
+<h3>Grafana Admin Accounts<a class="headerlink" href="#grafana-admin-accounts" title="Permalink to this headline">¶</a></h3>
+<p>This project provisions two Grafana Admin accounts. To set their account
+details like login name and password, you need to configure them in
+<code class="docutils literal notranslate"><span class="pre">admins/_superAdmins.yaml</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">grafanaAdmin</span></code> refers to the configuration of Grafana’s Main admin account,
+which is the default account that is created when you install Grafana (id=1).</p>
+<p><code class="docutils literal notranslate"><span class="pre">api</span></code> refers to the account that will be used by this script to make API
+calls to the Grafana server and provision organizations, accounts, datasources,
+folders and dashboards.</p>
+</div>
+<div class="section" id="default-organization">
+<h3>Default Organization<a class="headerlink" href="#default-organization" title="Permalink to this headline">¶</a></h3>
+<p>The project treats the first organization (id=1) as a special case. You can
+configure its name as well as the default accounts that will be part of it in
+<code class="docutils literal notranslate"><span class="pre">admins/_kiosk.yaml</span></code>.</p>
+<p>To add dashboards to this organization, you will need to add an input directory
+in <code class="docutils literal notranslate"><span class="pre">inputs/</span></code> <a class="reference internal" href="inputStructure.html#input-structure"><span class="std std-ref">just like with any other organization</span></a>,
+the <cite>org.yaml</cite> file must contain a hash with a key as the name of the org, but
+the list of other accounts that can be in it <em>can</em> be blank.</p>
+<p>In the same way, the accounts that this organization provisions are set in
+<code class="docutils literal notranslate"><span class="pre">admins/_kioskAccounts.yaml</span></code>. If you create input for this organization, you
+still need have</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Note: <em>Some steps require previous steps to have been completed before being
+executed. The syntax</em> <code class="docutils literal notranslate"><span class="pre">rn</span></code> <em>on one step means that this step requires step</em>
+<code class="docutils literal notranslate"><span class="pre">n</span></code> <em>to have been completed,</em> <code class="docutils literal notranslate"><span class="pre">r1</span></code> <em>on step 2 means that step 2 requires
+step 1 to complete. Similarly,</em> <code class="docutils literal notranslate"><span class="pre">r6,</span> <span class="pre">r8</span></code> <em>on step 9 means that step 9
+requires both step 6</em> <strong>and</strong> <em>step 8 to complete.</em></p>
+<p>For the following examples, the <code class="docutils literal notranslate"><span class="pre">main</span> <span class="pre">directory</span></code> will be <cite>/etc/grafana/lsst</cite>.</p>
+<div class="section" id="dependencies">
+<h3>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic" id="r1">
+<li><p class="first">Install EPEL repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">fedoraproject</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">epel</span><span class="o">/</span><span class="n">epel</span><span class="o">-</span><span class="n">release</span><span class="o">-</span><span class="n">latest</span><span class="o">-</span><span class="mf">7.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span> <span class="o">-</span><span class="n">y</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" id="r2" start="2">
+<li><p class="first"><a class="reference internal" href="#r1"><span class="std std-ref">r1</span></a> Install Python 3.6 with the requests and pyyaml libraries:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yum</span> <span class="n">install</span> <span class="n">python36</span> <span class="n">python36</span><span class="o">-</span><span class="n">requests</span><span class="o">.</span><span class="n">noarch</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">python36</span> <span class="o">-</span><span class="n">m</span> <span class="n">ensurepip</span>
+<span class="n">pip3</span><span class="o">.</span><span class="mi">6</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pip</span>
+<span class="n">pip3</span><span class="o">.</span><span class="mi">6</span> <span class="n">install</span> <span class="n">pyyaml</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" id="r3" start="3">
+<li><p class="first">Install Grafana plugins, this requires Grafana v5.3.0 or newer. You need to
+restart Grafana for new plugins to be recognized:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">grafana</span><span class="o">-</span><span class="n">cli</span> <span class="n">plugins</span> <span class="n">install</span> <span class="n">yesoreyeram</span><span class="o">-</span><span class="n">boomtable</span><span class="o">-</span><span class="n">panel</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="provisioning-setup">
+<h3>Provisioning Setup<a class="headerlink" href="#provisioning-setup" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic" id="r4" start="4">
+<li><p class="first">Place the project in a secure directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mv</span> <span class="n">GrafanaProvisioning</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">lsst</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" id="r5" start="5">
+<li><p class="first"><a class="reference internal" href="#r4"><span class="std std-ref">r4</span></a> Configure the directories the project will use. See
+<a class="reference internal" href="#configuration"><span class="std std-ref">Configuration</span></a> for more details:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vim</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">lsst</span><span class="o">/</span><span class="n">config</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>5.1. Configure the directory where the project resides in as <cite>provisioningDir</cite> inside <cite>config.yaml</cite> which is in the <code class="docutils literal notranslate"><span class="pre">main</span> <span class="pre">directory</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">provisioningDir</span><span class="p">:</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">lsst</span>
+</pre></div>
+</div>
+<p>5.2. Set <cite>dashboardsDir</cite> to another secure directory, where Grafana will look for dashboards:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dashboardsDir</span><span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">dashboards</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="provisioning">
+<h3>Provisioning<a class="headerlink" href="#provisioning" title="Permalink to this headline">¶</a></h3>
+<p>If any of the scripts close because of an error, do not continue with the
+following steps.</p>
+<ol class="arabic" id="r6" start="6">
+<li><p class="first"><a class="reference internal" href="#r2"><span class="std std-ref">r2</span></a>, <a class="reference internal" href="#r5"><span class="std std-ref">r5</span></a> Run <cite>gpSetup.py</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python36</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">lsst</span><span class="o">/</span><span class="n">gpSetup</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic simple" id="r7" start="7">
+<li><a class="reference internal" href="#r6"><span class="std std-ref">r6</span></a> Configure firewall rules to use Grafana (open port 3000).</li>
+</ol>
+<ol class="arabic simple" id="r8" start="8">
+<li><a class="reference internal" href="#r4"><span class="std std-ref">r4</span></a> For each organization/use case/department for which you wish
+to provision Grafana, add a directory with the correct
+<a class="reference internal" href="inputStructure.html#input-structure"><span class="std std-ref">Input Structure</span></a> inside the <cite>inputs/</cite> directory.</li>
+</ol>
+<ol class="arabic" id="r9" start="9">
+<li><p class="first"><a class="reference internal" href="#r6"><span class="std std-ref">r6</span></a>, <a class="reference internal" href="#r8"><span class="std std-ref">r8</span></a> Run <cite>gpInputs.py</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python36</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">lsst</span><span class="o">/</span><span class="n">gpInputs</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" id="r10" start="10">
+<li><p class="first"><a class="reference internal" href="#r9"><span class="std std-ref">r9</span></a> Run <cite>gpAccounts.py</cite>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python36</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">lsst</span><span class="o">/</span><span class="n">gpAccounts</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" id="r11" start="11">
+<li><p class="first"><a class="reference internal" href="#r3"><span class="std std-ref">r3</span></a>, <a class="reference internal" href="#r9"><span class="std std-ref">r9</span></a> Restart <code class="docutils literal notranslate"><span class="pre">grafana-server</span></code>. See
+<a class="reference internal" href="#restart"><span class="std std-ref">Criteria to Restart Grafana</span></a> to understand when Grafana should be restarted:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">systemctl</span> <span class="n">restart</span> <span class="n">grafana</span><span class="o">-</span><span class="n">server</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="criteria-to-restart-grafana">
+<span id="restart"></span><h2>Criteria to Restart Grafana<a class="headerlink" href="#criteria-to-restart-grafana" title="Permalink to this headline">¶</a></h2>
+<p>Grafana does not need to be restarted on every Puppet execution. You only need
+to restart grafana-server if any of the following cases has happened since the
+last Puppet execution:</p>
+<ul class="simple">
+<li>If a Grafana plugin has been installed.</li>
+<li>If one of the <code class="docutils literal notranslate"><span class="pre">datasources.yaml</span></code> files inside any organization’s input
+folder has changed.</li>
+<li>If the contents of the first level inside one of the <code class="docutils literal notranslate"><span class="pre">dashboards/</span></code>
+directories in any organization’s input has changed.</li>
+</ul>
+<p>The last two are hard to track with Puppet, so instead a file called
+<code class="docutils literal notranslate"><span class="pre">restart.txt</span></code> is created, which contains the string “restart”. If Puppet
+finds this file it can schedule grafana-server for restarting and delete the
+file.</p>
+</div>
+<div class="section" id="faq">
+<h2>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="can-i-make-permanent-links-to-my-dashboards">
+<h3>Can I make permanent links to my dashboards?<a class="headerlink" href="#can-i-make-permanent-links-to-my-dashboards" title="Permalink to this headline">¶</a></h3>
+<p>While Grafana uses and allows a unique id (uid) for their dashboards making it
+easy to link them over the web, we do not allow persistent UIDs on provisioned
+dashboards. This is to avoid conflicting UIDs, since if two dashboards are
+provisioned with the same uid, the second one will overwrite the first one and
+remove the latter from the database. It is possible to write a script that
+manages a local file with taken UIDs corresponding to specific files, but this
+has not been implemented in this version of this project.</p>
+<p>Grafana will generates random UIDs for dashboards which do not have them on
+startup. Sometimes when Grafana is <a class="reference internal" href="#restart"><span class="std std-ref">restarted</span></a>, the uid of
+provisioned dashboards will change. This means that you <em>can</em> have direct links
+to your dashboards, but it is not guaranteed that they will work in the long
+term.</p>
+<p>As per Grafana’s
+<a class="reference external" href="http://docs.grafana.org/administration/provisioning/#reusable-dashboard-urls">documentation:</a></p>
+<blockquote>
+<div>“<strong>Note.</strong> Provisioning allows you to overwrite existing dashboards which
+leads to problems if you re-use settings that are supposed to be unique. Be
+careful not to re-use the same <code class="docutils literal notranslate"><span class="pre">title</span></code> multiple times within a folder or
+<code class="docutils literal notranslate"><span class="pre">uid</span></code> within the same installation as this will cause weird behaviors.”</div></blockquote>
+</div>
+<div class="section" id="what-software-and-versions-does-this-project-use">
+<h3>What software and versions does this project use?<a class="headerlink" href="#what-software-and-versions-does-this-project-use" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>CentOS 7</li>
+<li>Grafana v5.4.2 (commit: d812109)</li>
+<li>Boom Table Plugin (Grafana) v0.4.6</li>
+<li>EPEL 7-11</li>
+<li>Python 3.6.6-1.el7</li>
+<li>python36-requests 2.12.5-2.el7</li>
+<li>pyyaml 3.13</li>
+</ul>
+</div>
+</div>
+<div class="section" id="recommendations">
+<h2>Recommendations<a class="headerlink" href="#recommendations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grafana-settings">
+<h3>Grafana Settings<a class="headerlink" href="#grafana-settings" title="Permalink to this headline">¶</a></h3>
+<p>Grafana’s default settings can be found on:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">grafana</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">defaults</span><span class="o">.</span><span class="n">ini</span>
+</pre></div>
+</div>
+<p>They need to be changed directly through Puppet, as it is the one which manages
+Grafana’s deployment.</p>
+<div class="section" id="dns">
+<h4>DNS<a class="headerlink" href="#dns" title="Permalink to this headline">¶</a></h4>
+<p>Sometimes clicking a link in Grafana will redirect users to <code class="docutils literal notranslate"><span class="pre">localhost</span></code>. This
+likely due to the misconfigured DNS setting in Grafana. It is intended to be
+set to what the address in the browser will use as a DNS.
+<a class="reference external" href="http://docs.grafana.org/installation/configuration/#domain">Reference</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
+   <span class="n">domain</span><span class="p">:</span> <span class="mf">10.0</span><span class="o">.</span><span class="mf">0.252</span><span class="p">:</span><span class="mi">3000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="viewers-can-edit">
+<h4>Viewers Can Edit<a class="headerlink" href="#viewers-can-edit" title="Permalink to this headline">¶</a></h4>
+<p>It is worth considering activating this option. When set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, viewers
+are allowed to edit/inspect dashboard settings in the browser, but not to save
+the dashboard. This would allow users to easily create and export new
+dashboards.
+<a class="reference external" href="http://docs.grafana.org/installation/configuration/#viewers-can-edit">Reference</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">users</span><span class="p">]</span>
+   <span class="n">viewers_can_edit</span><span class="p">:</span> <span class="n">true</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="grafana-internal-database">
+<h3>Grafana Internal Database<a class="headerlink" href="#grafana-internal-database" title="Permalink to this headline">¶</a></h3>
+<p>Grafana uses an internal database to manage users, dashboards, organizations
+and other data. By default this database is SQLite, which has limitations which
+include concurrent queries. If the system ever grows to a scale where the
+platform becomes unstable or unreliable, you may want to consider switching
+this database to MySQL or PostgreSQL.</p>
+</div>
+<div class="section" id="time-related-issues">
+<h3>Time Related Issues<a class="headerlink" href="#time-related-issues" title="Permalink to this headline">¶</a></h3>
+<p>There are a few settings that influence how you see data in Grafana depending
+on the frequency that the data is collected, and how it is saved and queried.</p>
+<div class="section" id="datasource-minimum-time-interval">
+<h4>Datasource Minimum Time Interval<a class="headerlink" href="#datasource-minimum-time-interval" title="Permalink to this headline">¶</a></h4>
+<p>When configuring your datasources, you should set the minimum time interval to
+the frequency that you are collecting data. If you set an smaller interval, you
+will see empty graphs when you zoom in too much in Grafana and are using
+dynamic time intervals.</p>
+<p>When provisioning,
+<a class="reference external" href="http://docs.grafana.org/administration/provisioning/#json-data">Grafana accepts setting</a>
+<code class="docutils literal notranslate"><span class="pre">timeInterval</span></code> for Prometheus, Elasticsearch, InfluxDB, MySQL, PostgreSQL and
+MSSQL datasources:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">jsonData</span><span class="p">:</span>
+   <span class="n">timeInterval</span><span class="p">:</span> <span class="mi">1</span><span class="n">m</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="influxdb-row-limit">
+<h4>InfluxDB Row Limit<a class="headerlink" href="#influxdb-row-limit" title="Permalink to this headline">¶</a></h4>
+<p>For this database, a setting can be configured to limit the size of a query’s
+response through HTTP. This can cause confusing behavior in Grafana when
+zooming out too much. InfluxDB is set to respond with a maximum of 10,000 rows
+to prevent server overload:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">http</span><span class="p">]</span>
+   <span class="nb">max</span><span class="o">-</span><span class="n">row</span><span class="o">-</span><span class="n">limit</span> <span class="o">=</span> <span class="mi">10000</span>
+</pre></div>
+</div>
+<p>This means that in a graph, Grafana will plot up to
+10,000 points regardless of how many lines are drawn. When the query exceeds
+this limit Grafana will just display the incomplete graph, but if you open the
+query inspector you will find <code class="docutils literal notranslate"><span class="pre">partial:</span> <span class="pre">true</span></code> in the metadata inside certain
+objects.</p>
+<p>To avoid this you can group by larger time intervals in your query, which will
+produce a smaller amount of results. Additionally, you can create a variable
+with different time intervals and use it in your query like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>GROUP BY time($var)
+</pre></div>
+</div>
+<p>so that you can change it when you zoom out.</p>
+<p><a class="reference external" href="https://jira.lsstcorp.org/browse/IT-978">Related Jira ticket</a></p>
+</div>
+<div class="section" id="telegraf-precision">
+<h4>Telegraf Precision<a class="headerlink" href="#telegraf-precision" title="Permalink to this headline">¶</a></h4>
+<p>When the system clock shifts over time and is readjusted by chronyd, Telegraf’s
+internal clock is unaffected. This results in Telegraf saving measurements to
+with shifted timestamps. Additionally, when Grafana queries InfluxDB for these
+shifted measurements between time ranges and groups them by time, there is a
+significant chance that some results will not be returned because the
+measurement will correspond to a time after the specified time range.</p>
+<p>To avoid this, you can set the precision in Telegraf to the interval that you
+are gathering data, so that timestamps are automatically rounded to the nearest
+interval. This is not perfect, but it can alleviate the problem:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">agent</span><span class="p">]</span>
+   <span class="n">precision</span> <span class="o">=</span> <span class="s2">&quot;1m&quot;</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://jira.lsstcorp.org/browse/IT-986">Related Jira ticket</a></div>
+<div class="line"><a class="reference external" href="https://github.com/influxdata/telegraf/issues/5335">Bug report</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="inputStructure.html" class="btn btn-neutral float-right" title="Provisioning Grafana Organizations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Grafana Provisioning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

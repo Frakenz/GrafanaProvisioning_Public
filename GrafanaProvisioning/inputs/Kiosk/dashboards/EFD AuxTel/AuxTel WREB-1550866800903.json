@@ -1,0 +1,699 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "iteration": 1550866797730,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "EFD Pathfinder",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(date_time) as time_sec,\n  ${auxtel_wreb_voltages1:csv}\nFROM atcamera_wreb\nWHERE $__timeFilter(date_time)\nORDER BY date_time ASC\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Voltages Set 1",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": false,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "volt",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "EFD Pathfinder",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(date_time) as time_sec,\n  ${auxtel_wreb_voltages2:csv}\nFROM atcamera_wreb\nWHERE $__timeFilter(date_time)\nORDER BY date_time ASC\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Voltages Set 2",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "volt",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "EFD Pathfinder",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(date_time) as time_sec,\n  ${auxtel_wreb_currents1:csv}\nFROM atcamera_wreb\nWHERE $__timeFilter(date_time)\nORDER BY date_time ASC\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Currents Set 1",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "mamp",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "EFD Pathfinder",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "format": "time_series",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  UNIX_TIMESTAMP(date_time) as time_sec,\n  ${auxtel_wreb_currents2:csv}\nFROM atcamera_wreb\nWHERE $__timeFilter(date_time)\nORDER BY date_time ASC\n",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Currents Set 2",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "mamp",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "ckPSH_V + ckPOV + ogoV + cks0V + rg0V + od0V + rd0V + gd0V",
+          "value": [
+            "ckPSH_V",
+            "ckPOV",
+            "ogoV",
+            "cks0V",
+            "rg0V",
+            "od0V",
+            "rd0V",
+            "gd0V"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "AuxTel WREB Voltages Set 1",
+        "multi": true,
+        "name": "auxtel_wreb_voltages1",
+        "options": [
+          {
+            "selected": true,
+            "text": "ckPSH_V",
+            "value": "ckPSH_V"
+          },
+          {
+            "selected": true,
+            "text": "ckPOV",
+            "value": "ckPOV"
+          },
+          {
+            "selected": true,
+            "text": "ogoV",
+            "value": "ogoV"
+          },
+          {
+            "selected": true,
+            "text": "cks0V",
+            "value": "cks0V"
+          },
+          {
+            "selected": true,
+            "text": "rg0V",
+            "value": "rg0V"
+          },
+          {
+            "selected": true,
+            "text": "od0V",
+            "value": "od0V"
+          },
+          {
+            "selected": true,
+            "text": "rd0V",
+            "value": "rd0V"
+          },
+          {
+            "selected": true,
+            "text": "gd0V",
+            "value": "gd0V"
+          }
+        ],
+        "query": "ckPSH_V,ckPOV,ogoV,cks0V,rg0V,od0V,rd0V,gd0V",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "od0I",
+          "value": "od0I"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "AuxTel WREB Currents Set 1",
+        "multi": false,
+        "name": "auxtel_wreb_currents1",
+        "options": [
+          {
+            "selected": true,
+            "text": "od0I",
+            "value": "od0I"
+          }
+        ],
+        "query": "od0I",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "digPS_V + anaPS_V + clkHPS_V + odPS_V + htrPS_V + power + sckU_V + sckL_V + rgU_V + rgL_V",
+          "value": [
+            "digPS_V",
+            "anaPS_V",
+            "clkHPS_V",
+            "odPS_V",
+            "htrPS_V",
+            "power",
+            "sckU_V",
+            "sckL_V",
+            "rgU_V",
+            "rgL_V"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "AuxTel WREB Voltages Set 2",
+        "multi": true,
+        "name": "auxtel_wreb_voltages2",
+        "options": [
+          {
+            "selected": true,
+            "text": "digPS_V",
+            "value": "digPS_V"
+          },
+          {
+            "selected": true,
+            "text": "anaPS_V",
+            "value": "anaPS_V"
+          },
+          {
+            "selected": true,
+            "text": "clkHPS_V",
+            "value": "clkHPS_V"
+          },
+          {
+            "selected": true,
+            "text": "odPS_V",
+            "value": "odPS_V"
+          },
+          {
+            "selected": true,
+            "text": "htrPS_V",
+            "value": "htrPS_V"
+          },
+          {
+            "selected": true,
+            "text": "power",
+            "value": "power"
+          },
+          {
+            "selected": true,
+            "text": "sckU_V",
+            "value": "sckU_V"
+          },
+          {
+            "selected": true,
+            "text": "sckL_V",
+            "value": "sckL_V"
+          },
+          {
+            "selected": true,
+            "text": "rgU_V",
+            "value": "rgU_V"
+          },
+          {
+            "selected": true,
+            "text": "rgL_V",
+            "value": "rgL_V"
+          }
+        ],
+        "query": "digPS_V,anaPS_V,clkHPS_V,odPS_V,htrPS_V,power,sckU_V,sckL_V,rgU_V,rgL_V",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "tags": [],
+          "text": "digPS_I + anaPS_I + clkHPS_I + odPS_I + htrPS_I",
+          "value": [
+            "digPS_I",
+            "anaPS_I",
+            "clkHPS_I",
+            "odPS_I",
+            "htrPS_I"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "AuxTel WREB Currents Set 2",
+        "multi": true,
+        "name": "auxtel_wreb_currents2",
+        "options": [
+          {
+            "selected": true,
+            "text": "digPS_I",
+            "value": "digPS_I"
+          },
+          {
+            "selected": true,
+            "text": "anaPS_I",
+            "value": "anaPS_I"
+          },
+          {
+            "selected": true,
+            "text": "clkHPS_I",
+            "value": "clkHPS_I"
+          },
+          {
+            "selected": true,
+            "text": "odPS_I",
+            "value": "odPS_I"
+          },
+          {
+            "selected": true,
+            "text": "htrPS_I",
+            "value": "htrPS_I"
+          }
+        ],
+        "query": "digPS_I,anaPS_I,clkHPS_I,odPS_I,htrPS_I",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "AuxTel WREB",
+  "version": 1
+}

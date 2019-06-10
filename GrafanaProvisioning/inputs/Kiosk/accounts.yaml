@@ -1,0 +1,4 @@
+- login: kioskadmin
+  password: yourpassword
+  name: Kiosk Admin
+  email: kiosk@localhost

@@ -1,0 +1,1952 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 4,
+  "links": [],
+  "panels": [
+    {
+      "bgColor": null,
+      "clockType": "24 hour",
+      "countdownSettings": {
+        "customFormat": null,
+        "endCountdownTime": "2018-06-23T18:44:00.000Z",
+        "endText": "00:00:00"
+      },
+      "dateSettings": {
+        "dateFormat": "YYYY-MM-DD",
+        "fontSize": "20px",
+        "fontWeight": "normal",
+        "showDate": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 0
+      },
+      "id": 14,
+      "links": [],
+      "mode": "time",
+      "offsetFromUtc": "-3",
+      "offsetFromUtcMinutes": null,
+      "refreshSettings": {
+        "syncWithDashboard": false
+      },
+      "timeSettings": {
+        "customFormat": "HH:mm:ss",
+        "fontSize": "60px",
+        "fontWeight": "normal"
+      },
+      "title": "Chile Time",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
+      "bgColor": null,
+      "clockType": "24 hour",
+      "countdownSettings": {
+        "customFormat": null,
+        "endCountdownTime": "2018-06-23T18:28:00.000Z",
+        "endText": "00:00:00"
+      },
+      "dateSettings": {
+        "dateFormat": "YYYY-MM-DD",
+        "fontSize": "20px",
+        "fontWeight": "normal",
+        "showDate": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 0
+      },
+      "id": 8,
+      "links": [],
+      "mode": "time",
+      "offsetFromUtc": "-7",
+      "offsetFromUtcMinutes": "",
+      "refreshSettings": {
+        "syncWithDashboard": false
+      },
+      "timeSettings": {
+        "customFormat": "HH:mm:ss",
+        "fontSize": "60px",
+        "fontWeight": "normal"
+      },
+      "title": "Tucson Time",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
+      "bgColor": null,
+      "clockType": "24 hour",
+      "countdownSettings": {
+        "customFormat": null,
+        "endCountdownTime": "2018-06-23T18:44:00.000Z",
+        "endText": "00:00:00"
+      },
+      "dateSettings": {
+        "dateFormat": "YYYY-MM-DD",
+        "fontSize": "20px",
+        "fontWeight": "normal",
+        "showDate": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 0
+      },
+      "id": 12,
+      "links": [],
+      "mode": "time",
+      "offsetFromUtc": "-5",
+      "offsetFromUtcMinutes": null,
+      "refreshSettings": {
+        "syncWithDashboard": false
+      },
+      "timeSettings": {
+        "customFormat": "HH:mm:ss",
+        "fontSize": "60px",
+        "fontWeight": "normal"
+      },
+      "title": "NCSA Time",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
+      "bgColor": null,
+      "clockType": "24 hour",
+      "countdownSettings": {
+        "customFormat": null,
+        "endCountdownTime": "2018-06-23T18:44:00.000Z",
+        "endText": "00:00:00"
+      },
+      "dateSettings": {
+        "dateFormat": "YYYY-MM-DD",
+        "fontSize": "20px",
+        "fontWeight": "normal",
+        "showDate": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 0
+      },
+      "id": 10,
+      "links": [],
+      "mode": "time",
+      "offsetFromUtc": "-7",
+      "offsetFromUtcMinutes": null,
+      "refreshSettings": {
+        "syncWithDashboard": false
+      },
+      "timeSettings": {
+        "customFormat": "HH:mm:ss",
+        "fontSize": "60px",
+        "fontWeight": "normal"
+      },
+      "title": "SLAC Time",
+      "transparent": true,
+      "type": "grafana-clock-panel"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": true,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "LSST InfluxDB",
+      "format": "bps",
+      "gauge": {
+        "maxValue": 1000000000,
+        "minValue": 0,
+        "show": true,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 18,
+        "y": 0
+      },
+      "id": 21,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "1m"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "enclave",
+              "operator": "=",
+              "value": "net"
+            },
+            {
+              "condition": "AND",
+              "key": "node_name",
+              "operator": "=",
+              "value": "cisco"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/1/3"
+            }
+          ]
+        }
+      ],
+      "thresholds": "700000000, 900000000",
+      "title": "Output Throughput DWDM",
+      "type": "singlestat",
+      "valueFontSize": "50%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "LSST InfluxDB",
+      "format": "ms",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 3,
+        "x": 21,
+        "y": 0
+      },
+      "id": 18,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": false,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "ping",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "average_response_ms"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "core"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "title": "Ping to core in the summit",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "LSST InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 4
+      },
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "DLink Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(\"ifHCInOctets\", 1s) *8 AS \"Inbound\", derivative(\"ifHCOutOctets\", 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = '1/48') AND $timeFilter GROUP BY \"ifName\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCInOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "1/48"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(\"ifHCInOctets\", 1s) *8 AS \"Inbound\", derivative(\"ifHCOutOctets\", 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/0/1') AND $timeFilter GROUP BY \"ifName\"",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCInOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/1"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"ifHCInOctets\"), 1s) *8 AS \"Outbound\", non_negative_derivative(mean(\"ifHCOutOctets\"), 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/1/3') AND $timeFilter GROUP BY time($interval), \"ifName\"",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCInOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/1/3"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"ifHCInOctets\"), 1s) *8 AS \"Outbound\", non_negative_derivative(mean(\"ifHCOutOctets\"), 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/1/3') AND $timeFilter GROUP BY time($interval), \"ifName\"",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCInOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/23"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(mean(\"ifHCInOctets\"), 1s) *8 AS \"Outbound\", non_negative_derivative(mean(\"ifHCOutOctets\"), 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/1/3') AND $timeFilter GROUP BY time($interval), \"ifName\"",
+          "rawQuery": false,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCInOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/24"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Monitoring - Input",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "LSST InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 4
+      },
+      "id": 19,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "DLink Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(\"ifHCInOctets\", 1s) *8 AS \"Inbound\", derivative(\"ifHCOutOctets\", 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = '1/48') AND $timeFilter GROUP BY \"ifName\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Outbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "1/48"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(\"ifHCInOctets\", 1s) *8 AS \"Inbound\", derivative(\"ifHCOutOctets\", 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/0/1') AND $timeFilter GROUP BY \"ifName\"",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Outbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/1"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(first(\"ifHCOutOctets\"), 1s) *8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/1/3') AND $timeFilter GROUP BY time($interval), \"ifName\"",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Outbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/1/3"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(first(\"ifHCOutOctets\"), 1s) *8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/1/3') AND $timeFilter GROUP BY time($interval), \"ifName\"",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Outbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/23"
+            }
+          ]
+        },
+        {
+          "alias": "3850 Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT non_negative_derivative(first(\"ifHCOutOctets\"), 1s) *8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/1/3') AND $timeFilter GROUP BY time($interval), \"ifName\"",
+          "rawQuery": false,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Outbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/24"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Monitoring - Output",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [],
+              "type": "no_value"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [],
+              "type": "no_value"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "B",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          },
+          {
+            "evaluator": {
+              "params": [],
+              "type": "no_value"
+            },
+            "operator": {
+              "type": "or"
+            },
+            "query": {
+              "params": [
+                "C",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "last"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "60s",
+        "handler": 1,
+        "message": "Earthcam is having problems",
+        "name": "Eearthcam monitoring",
+        "noDataState": "alerting",
+        "notifications": [
+          {
+            "id": 1
+          }
+        ]
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "LSST InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 4,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "device"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "ping",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "average_response_ms"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "webcam"
+            },
+            {
+              "condition": "AND",
+              "key": "device",
+              "operator": "=",
+              "value": "dome"
+            }
+          ]
+        },
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "device"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "ping",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "average_response_ms"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "webcam"
+            },
+            {
+              "condition": "AND",
+              "key": "device",
+              "operator": "=",
+              "value": "basefacility"
+            }
+          ]
+        },
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "device"
+              ],
+              "type": "tag"
+            }
+          ],
+          "measurement": "ping",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "average_response_ms"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "type",
+              "operator": "=",
+              "value": "webcam"
+            },
+            {
+              "condition": "AND",
+              "key": "device",
+              "operator": "=",
+              "value": "hill"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Earthcam Monitoring",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "alert": {
+        "conditions": [
+          {
+            "evaluator": {
+              "params": [
+                100
+              ],
+              "type": "gt"
+            },
+            "operator": {
+              "type": "and"
+            },
+            "query": {
+              "params": [
+                "A",
+                "5m",
+                "now"
+              ]
+            },
+            "reducer": {
+              "params": [],
+              "type": "avg"
+            },
+            "type": "query"
+          }
+        ],
+        "executionErrorState": "alerting",
+        "frequency": "60s",
+        "handler": 1,
+        "message": "Ping to ACI is taking longer than 100ms!!",
+        "name": "Ping to ACI",
+        "noDataState": "no_data",
+        "notifications": [
+          {
+            "id": 3
+          }
+        ]
+      },
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "LSST InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 23
+      },
+      "id": 23,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "groupBy": [],
+          "measurement": "ping",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "average_response_ms"
+                ],
+                "type": "field"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "enclave",
+              "operator": "=",
+              "value": "net"
+            },
+            {
+              "condition": "AND",
+              "key": "node_name",
+              "operator": "=",
+              "value": "aci_core"
+            }
+          ]
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": true,
+          "op": "gt",
+          "value": 100
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Ping to ACI",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "LSST InfluxDB",
+      "fill": 1,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 23
+      },
+      "id": 24,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "DistSwitch Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(\"ifHCInOctets\", 1s) *8 AS \"Inbound\", derivative(\"ifHCOutOctets\", 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = '1/48') AND $timeFilter GROUP BY \"ifName\"",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCInOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/23"
+            }
+          ]
+        },
+        {
+          "alias": "DistSwitch Gi$tag_ifName",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "ifName"
+              ],
+              "type": "tag"
+            }
+          ],
+          "hide": false,
+          "measurement": "snmp",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT derivative(\"ifHCInOctets\", 1s) *8 AS \"Inbound\", derivative(\"ifHCOutOctets\", 1s) *-8 AS \"Outbound\" FROM \"snmp\" WHERE (\"device\" = 'switch' AND \"ifName\" = 'Te1/0/1') AND $timeFilter GROUP BY \"ifName\"",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ifHCOutOctets"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "1s"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "*8"
+                ],
+                "type": "math"
+              },
+              {
+                "params": [
+                  "Inbound"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "device",
+              "operator": "=",
+              "value": "switch"
+            },
+            {
+              "condition": "AND",
+              "key": "ifName",
+              "operator": "=",
+              "value": "Te1/0/23"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Monitoring - Input",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bps",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 16,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "Network Dashboard",
+  "uid": "W0rrU5Vmk",
+  "version": 5
+}

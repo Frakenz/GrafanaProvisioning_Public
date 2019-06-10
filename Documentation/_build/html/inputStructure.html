@@ -1,0 +1,566 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Provisioning Grafana Organizations &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="YAML Utility Module" href="yamlUtility.html" />
+    <link rel="prev" title="Server Configuration" href="readme.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Provisioning Grafana Organizations</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/inputStructure.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="yamlUtility.html" class="btn btn-neutral float-right" title="YAML Utility Module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="readme.html" class="btn btn-neutral float-left" title="Server Configuration" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="provisioning-grafana-organizations">
+<h1>Provisioning Grafana Organizations<a class="headerlink" href="#provisioning-grafana-organizations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="grafana-basic-concepts">
+<h3>Grafana Basic Concepts<a class="headerlink" href="#grafana-basic-concepts" title="Permalink to this headline">¶</a></h3>
+<p>This is a summary of what you need to know to understand this page. For more
+details, you can read
+<a class="reference external" href="docs.grafana.org/guides/basic_concepts/">Grafana’s Basic Concepts</a>.</p>
+<p>Grafana works with internal <code class="docutils literal notranslate"><span class="pre">organizations</span></code> which function as user groups in
+which users can add, view and generally manage their dashboards. Users have
+their own <code class="docutils literal notranslate"><span class="pre">account</span></code> each, which have permissions depending on what that user
+will use that account for. Accounts can be members of an organization in which
+they can have three roles: <cite>Admin</cite>, <cite>Editor</cite> and <cite>Viewer</cite>; they can also be
+members of more than one organization although it is usually not the case.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Dashboards</span></code> are pages where you can add <code class="docutils literal notranslate"><span class="pre">panels</span></code>, which are types of
+graphs, tables and other utilities. All dashboards must belong to an
+organization. <code class="docutils literal notranslate"><span class="pre">Datasources</span></code> are Grafana’s way of naming and configuring how
+it connects to different databases available, they must be declared on each
+organization and dashboards must gather data from datasources declared in the
+same organization which they belong to.</p>
+</div>
+<div class="section" id="what-provisioning-your-organization-means">
+<h3>What Provisioning Your Organization Means<a class="headerlink" href="#what-provisioning-your-organization-means" title="Permalink to this headline">¶</a></h3>
+<p>When you provision something to Grafana, you must provide access to your
+<code class="docutils literal notranslate"><span class="pre">Input</span> <span class="pre">Files</span></code> in an online repository. The server will download your files
+every time it detects there are changes and will then update your Grafana
+Organization.</p>
+<p>Once your files are provisioned, your own Grafana organization will be created
+where your dashboards will be displayed categorized in as many Grafana Folders
+as you choose, your datasources will be added, and the accounts you specify
+will belong to it. If the accounts are new they will be created for you, and if
+they already exist they will just be added to the organization.</p>
+<p>The advantage of having all of this done automatically is that we can easily
+recover from losing a server or other mishaps. User mistakes can be avoided:</p>
+<ul class="simple">
+<li>If someone deletes a dashboard or folder on accident, it will be
+automatically restored.</li>
+<li>Datasources cannot be edited directly through the web client, they must be
+edited in the provisioning configuration.</li>
+<li>Dashboards can only be temporarily edited by editors. Users can’t save over
+provisioned dashboards, but they can save new ones if their permissions allow
+them to.</li>
+</ul>
+<p>You can add new dashboards, datasources and users to your organization. But you
+can rest knowing that the basic configuration will always be there.</p>
+</div>
+</div>
+<div class="section" id="input-structure">
+<span id="id1"></span><h2>Input Structure<a class="headerlink" href="#input-structure" title="Permalink to this headline">¶</a></h2>
+<p>The script which processes the input files is <cite>gpInputs.py</cite>, it is meant to run
+on every Puppet execution. It will process files provided by users which should
+be stored in folders inside the <cite>inputs/</cite> directory. These folders represent
+Grafana organizations and should come with three files and a directory inside
+them:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>My Org&#39;s Repo/
+├── org.yaml
+├── accounts.yaml
+├── datasources.yaml
+└── dashboards/
+    ├── Your Grafana Folder/
+    │   ├── DashboardsGoHere.json
+    │   └── My Dashboard.json
+    └── YourOtherGrafanaFolder/
+        └── DashboardsGoHereToo.json
+</pre></div>
+</div>
+<p>The specifications of each file are explained below. You should also
+<a class="reference download internal" download="" href="_downloads/7a55dca29f109d8fe68a76b3f7ae7632/SampleInputGrafana.zip"><code class="xref download docutils literal notranslate"><span class="pre">download</span> <span class="pre">the</span> <span class="pre">example</span> <span class="pre">files</span></code></a> and
+modify them to fit your own requirements.
+After you are done, upload them to an online repository and make them available
+to the server admin so that they can add your organization to the provisioning
+configuration. You can later add new folders, dashboards and users to the files
+in your repository and the server will update them automatically.</p>
+<div class="section" id="organization">
+<h3>Organization<a class="headerlink" href="#organization" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>org.yaml</cite> file should contain a hash with only one key, which should be
+the organization’s name. As the value of that key, there should be a list of
+hashes, each with two keys:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>login <span class="classifier-delimiter">:</span> <span class="classifier"><cite>str</cite></span></dt>
+<dd><p class="first last">Username of a provisioned account inside an <cite>accounts.yaml</cite> file. This
+account could be configured inside a different organization.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>role <span class="classifier-delimiter">:</span> <span class="classifier">{<code class="docutils literal notranslate"><span class="pre">Admin</span></code>, <code class="docutils literal notranslate"><span class="pre">Editor</span></code>, <code class="docutils literal notranslate"><span class="pre">Viewer</span></code>}</span></dt>
+<dd><p class="first last">The role that the user will have inside this organization</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Organization names must be unique in each Grafana server. Check with a server
+admin if your name for a new organization is available.</p>
+</div>
+<div class="section" id="accounts">
+<h3>Accounts<a class="headerlink" href="#accounts" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>accounts.yaml</cite> file should contain new accounts that need to be created
+and maintained with the provisioning of this organization. The structure is a
+list of hashes, each with four string keys, some of which must be unique inside
+this Grafana installation:</p>
+<blockquote>
+<div><ul class="simple">
+<li>login : Username of the new account (<code class="docutils literal notranslate"><span class="pre">unique</span></code>).</li>
+<li>password : Password of the new account.</li>
+<li>name : Name of the user.</li>
+<li>email : Email associated with the new account (<code class="docutils literal notranslate"><span class="pre">unique</span></code>).</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="datasources">
+<h3>Datasources<a class="headerlink" href="#datasources" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>datasources.yaml</cite> file should contain a list of datasources to configure
+according to what Grafana <a class="reference external" href="http://docs.grafana.org/administration/provisioning/#datasources">requires for different database engines</a>
+to provision them, minus the fields <code class="docutils literal notranslate"><span class="pre">orgId</span></code> and <code class="docutils literal notranslate"><span class="pre">editable</span></code> since they will
+be added by this script. If the file comes with settings for
+<code class="docutils literal notranslate"><span class="pre">deleteDatasources</span></code> this field will not be added to the provisioned file.</p>
+<p>Note that if you have more than one datasource in your organization, it is
+important that only one of them has the <code class="docutils literal notranslate"><span class="pre">isDefault:</span> <span class="pre">true</span></code> setting.</p>
+</div>
+<div class="section" id="folders-and-dashboards">
+<h3>Folders and Dashboards<a class="headerlink" href="#folders-and-dashboards" title="Permalink to this headline">¶</a></h3>
+<p>The <cite>dashboards/</cite> directory must contain one directory for each Grafana
+Folder that will need to be provisioned for this organization. The Grafana
+Folders will take the name of these directories and will contain the dashboards
+stored inside them. You must place your JSON files with Grafana Dashboards in
+these directories.</p>
+<p>The dashboards must be already configured to use their corresponding
+datasources and with the correct time range because they will be displayed
+exactly as they are provided.</p>
+<div class="section" id="exporting-dashboards">
+<h4>Exporting Dashboards<a class="headerlink" href="#exporting-dashboards" title="Permalink to this headline">¶</a></h4>
+<p>You can create your own dashboards in Grafana and then export them to your
+repository. To export a dashboard:</p>
+<ol class="arabic simple">
+<li>Open your dashboard in Grafana.</li>
+<li>Depending on the Grafana version there are two ways to export dashboards: if
+you can’t see the checkbox on the first one, you should use the second one.</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li>The simple way:<ol class="loweralpha">
+<li>Click the <cite>Share dashboard</cite> button.</li>
+<li>Go to the <cite>Export</cite> tab.</li>
+<li><strong>Uncheck</strong> <cite>Export for sharing externally</cite>.</li>
+<li>Save to file.</li>
+</ol>
+</li>
+<li>The long way. This method can be used for any Grafana version:<ol class="loweralpha">
+<li>Click on <cite>Settings</cite>.</li>
+<li>Go to the <cite>View JSON</cite> or <cite>JSON Model</cite> tab at the bottom.</li>
+<li>Click inside the JSON code.</li>
+<li>Press <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">a</span></code> to select all of the JSON text.</li>
+<li>Copy the entire JSON.</li>
+<li>Open a text editor like <cite>Notepad</cite>.</li>
+<li>Paste the JSON into the editor.</li>
+<li>Save the file as a <code class="docutils literal notranslate"><span class="pre">.json</span></code>. The file name is not important but
+should be descriptive. For example <code class="docutils literal notranslate"><span class="pre">temperature.json</span></code>.</li>
+</ol>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+<div class="section" id="program-behavior-with-input-files">
+<h2>Program Behavior with Input Files<a class="headerlink" href="#program-behavior-with-input-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-the-input-files-do">
+<h3>What the Input Files Do<a class="headerlink" href="#what-the-input-files-do" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="org-yaml">
+<h4>org.yaml<a class="headerlink" href="#org-yaml" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Create a new organization with the configured name if it doesn’t exist.</li>
+<li>Add configured users to organization, with given roles.</li>
+<li>Report an error if the organization name is already configured in another set
+of input files.</li>
+</ul>
+</div>
+<div class="section" id="accounts-yaml">
+<h4>accounts.yaml<a class="headerlink" href="#accounts-yaml" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Create configured accounts that don’t exist.</li>
+<li>Report an error if a configured account is already provisioned by another
+organization.</li>
+</ul>
+</div>
+<div class="section" id="datasources-yaml">
+<h4>datasources.yaml<a class="headerlink" href="#datasources-yaml" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Add the configured datasources to the organization.</li>
+<li>Remove previously provisioned datasources that were removed from the
+configuration.</li>
+</ul>
+</div>
+<div class="section" id="dashboards">
+<h4>dashboards/<a class="headerlink" href="#dashboards" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Detects folders inside it and provisions a Grafana Folder with the contained
+dashboards for each one.</li>
+<li>Restore provisioned folders and dashboards that have been deleted.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="what-the-input-files-can-t-do">
+<h3>What the Input Files Can’t Do<a class="headerlink" href="#what-the-input-files-can-t-do" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4>org.yaml<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Change the name of an organization. If you change it the server will just
+create a new organization with the provisioning configuration and stop
+provisioning the old one.</li>
+<li>Add accounts to an organization, which are not part of any organization’s
+provisioning files.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h4>accounts.yaml<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Edit an existing account</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h4>dashboards/<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Delete Grafana Folders and dashboards that have been removed from the
+configuration. You must remove these Folders or dashboards manually through
+the web client with an <cite>Editor</cite> or <cite>Admin</cite> account to delete them from
+Grafana’s database.</li>
+<li>Provision dashboards with given UIDs. IDs and UIDs will be removed before
+provisioning and Grafana will assign new ones.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="yamlUtility.html" class="btn btn-neutral float-right" title="YAML Utility Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="readme.html" class="btn btn-neutral float-left" title="Server Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

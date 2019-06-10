@@ -1,0 +1,3 @@
+Kiosk:
+  - login: kioskadmin
+    role: Admin

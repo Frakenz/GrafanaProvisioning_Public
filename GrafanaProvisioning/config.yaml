@@ -1,0 +1,11 @@
+# Directory where the program will be running
+#provisioningDir: /etc/grafana/lsst
+
+# Base directory where Grafana provisioned dashboards will be stored
+dashboardsDir: /var/lib/grafana/dashboards
+
+# Timeout in seconds for api requests
+timeout: 5
+
+# How often Grafana will scan for changed dashboards
+updateIntervalSeconds: 3600

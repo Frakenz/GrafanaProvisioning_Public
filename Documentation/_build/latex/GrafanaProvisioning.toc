@@ -1,0 +1,64 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Server Configuration}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Configuration}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}General Configuration}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Grafana Admin Accounts}{1}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Default Organization}{2}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}Installation}{2}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Dependencies}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Provisioning Setup}{2}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Provisioning}{3}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}Criteria to Restart Grafana}{3}{section.1.3}
+\contentsline {section}{\numberline {1.4}FAQ}{3}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Can I make permanent links to my dashboards?}{3}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}What software and versions does this project use?}{4}{subsection.1.4.2}
+\contentsline {section}{\numberline {1.5}Recommendations}{4}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Grafana Settings}{4}{subsection.1.5.1}
+\contentsline {subsubsection}{\numberline {1.5.1.1}DNS}{4}{subsubsection.1.5.1.1}
+\contentsline {subsubsection}{\numberline {1.5.1.2}Viewers Can Edit}{4}{subsubsection.1.5.1.2}
+\contentsline {subsection}{\numberline {1.5.2}Grafana Internal Database}{5}{subsection.1.5.2}
+\contentsline {subsection}{\numberline {1.5.3}Time Related Issues}{5}{subsection.1.5.3}
+\contentsline {subsubsection}{\numberline {1.5.3.1}Datasource Minimum Time Interval}{5}{subsubsection.1.5.3.1}
+\contentsline {subsubsection}{\numberline {1.5.3.2}InfluxDB Row Limit}{5}{subsubsection.1.5.3.2}
+\contentsline {subsubsection}{\numberline {1.5.3.3}Telegraf Precision}{6}{subsubsection.1.5.3.3}
+\contentsline {chapter}{\numberline {2}Provisioning Grafana Organizations}{7}{chapter.2}
+\contentsline {section}{\numberline {2.1}Introduction}{7}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Grafana Basic Concepts}{7}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}What Provisioning Your Organization Means}{7}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Input Structure}{8}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Organization}{8}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Accounts}{8}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Datasources}{8}{subsection.2.2.3}
+\contentsline {subsection}{\numberline {2.2.4}Folders and Dashboards}{9}{subsection.2.2.4}
+\contentsline {subsubsection}{\numberline {2.2.4.1}Exporting Dashboards}{9}{subsubsection.2.2.4.1}
+\contentsline {section}{\numberline {2.3}Program Behavior with Input Files}{9}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}What the Input Files Do}{9}{subsection.2.3.1}
+\contentsline {subsubsection}{\numberline {2.3.1.1}org.yaml}{9}{subsubsection.2.3.1.1}
+\contentsline {subsubsection}{\numberline {2.3.1.2}accounts.yaml}{10}{subsubsection.2.3.1.2}
+\contentsline {subsubsection}{\numberline {2.3.1.3}datasources.yaml}{10}{subsubsection.2.3.1.3}
+\contentsline {subsubsection}{\numberline {2.3.1.4}dashboards/}{10}{subsubsection.2.3.1.4}
+\contentsline {subsection}{\numberline {2.3.2}What the Input Files Can\IeC {\textquoteright }t Do}{10}{subsection.2.3.2}
+\contentsline {subsubsection}{\numberline {2.3.2.1}org.yaml}{10}{subsubsection.2.3.2.1}
+\contentsline {subsubsection}{\numberline {2.3.2.2}accounts.yaml}{10}{subsubsection.2.3.2.2}
+\contentsline {subsubsection}{\numberline {2.3.2.3}dashboards/}{10}{subsubsection.2.3.2.3}
+\contentsline {chapter}{\numberline {3}YAML Utility Module}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Functions}{11}{section.3.1}
+\contentsline {chapter}{\numberline {4}Grafana API Module}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}Notes}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Functions}{15}{section.4.2}
+\contentsline {chapter}{\numberline {5}Setup Script}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Notes}{21}{section.5.1}
+\contentsline {section}{\numberline {5.2}Functions}{21}{section.5.2}
+\contentsline {chapter}{\numberline {6}Input Script}{23}{chapter.6}
+\contentsline {section}{\numberline {6.1}Input Files}{23}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Organization}{23}{subsection.6.1.1}
+\contentsline {subsection}{\numberline {6.1.2}Accounts}{23}{subsection.6.1.2}
+\contentsline {subsection}{\numberline {6.1.3}Datasources}{23}{subsection.6.1.3}
+\contentsline {subsection}{\numberline {6.1.4}Dashboards}{23}{subsection.6.1.4}
+\contentsline {section}{\numberline {6.2}Notes}{24}{section.6.2}
+\contentsline {section}{\numberline {6.3}Functions}{24}{section.6.3}
+\contentsline {chapter}{\numberline {7}Accounts Script}{29}{chapter.7}
+\contentsline {section}{\numberline {7.1}Functions}{29}{section.7.1}
+\contentsline {chapter}{\numberline {8}Site Map}{33}{chapter.8}
+\contentsline {chapter}{Python Module Index}{35}{section*.33}
+\contentsline {chapter}{Index}{37}{section*.34}

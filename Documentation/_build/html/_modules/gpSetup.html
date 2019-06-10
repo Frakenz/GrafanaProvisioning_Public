@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gpSetup &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="../_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>gpSetup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gpSetup</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Configures Grafana Admin accounts and default org for a fresh installation.</span>
+
+<span class="sd">This script is meant to run it&#39;s main body only on a fresh installation of</span>
+<span class="sd">Grafana. Still, it is designed to be able to be ran with every Puppet execution</span>
+<span class="sd">with the help of the file ``lastInitialization.txt`` which will be stored in</span>
+<span class="sd">the same directory where this is ran from. When this script completes</span>
+<span class="sd">successfully, it will write the timestamp of when it initialized Grafana.</span>
+
+<span class="sd">This script will load configurations stored in ``admins/_kiosk.yaml`` and </span>
+<span class="sd">``admins/_superAdmins.yaml``. It changes the ``password`` and account name</span>
+<span class="sd">(``login``) for the default account (which has ``super admin`` privileges).</span>
+<span class="sd">It will then create another account, which will be used by the script from now</span>
+<span class="sd">on to make requests to Grafana&#39;s API. With that account, the name of the</span>
+<span class="sd">default organization will be changed.</span>
+
+<span class="sd">Notes</span>
+<span class="sd">=====</span>
+<span class="sd">Since Grafana&#39;s API can be accessed over the network through the same port by</span>
+<span class="sd">which the web client is accessed, it is ``IMPORTANT`` that this script is ran</span>
+<span class="sd">before opening Grafana&#39;s port (default is 3000) on the firewall.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">=========</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">grafanaAPI</span> <span class="k">as</span> <span class="nn">gapi</span>
+<span class="kn">import</span> <span class="nn">yamlUtility</span> <span class="k">as</span> <span class="nn">yutil</span>
+
+
+<div class="viewcode-block" id="changeAdminPassword"><a class="viewcode-back" href="../setup.html#gpSetup.changeAdminPassword">[docs]</a><span class="k">def</span> <span class="nf">changeAdminPassword</span><span class="p">(</span><span class="n">newPasswd</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change Grafana Admin&#39;s password.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    newPasswd : `str`</span>
+<span class="sd">        New password for the Admin account</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    grafanaAPI</span>
+<span class="sd">    renameAdminUser</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    It can be acceptable for the request to fail, if the execution of this script</span>
+<span class="sd">    was interrupted before and it is still necessary to complete the final steps.</span>
+<span class="sd">    </span>
+<span class="sd">    When testing, changing the username and password did not kick the logged in </span>
+<span class="sd">    user from the website.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="n">newPasswd</span><span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="s1">&#39;admin/users/1/password&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">gapi</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Failed to change default admin password. If the script failed in a previous &#39;</span>
+            <span class="s1">&#39;execution then it can still be necessary to execute the rest of the script. If this is the &#39;</span>
+            <span class="s1">&#39;first time you are running this script then there might be a connection problem with Grafana&#39;</span>
+            <span class="s1">&#39; or it might already be provisioned.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="renameAdminUser"><a class="viewcode-back" href="../setup.html#gpSetup.renameAdminUser">[docs]</a><span class="k">def</span> <span class="nf">renameAdminUser</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Change Grafana admin&#39;s username.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    data: `dict`</span>
+<span class="sd">        Contains the fields accepted by Grafana API&#39;s ``User Update``:</span>
+<span class="sd">         - login: Change the username of the account (`str`).</span>
+<span class="sd">         - name: Change the name of the account (`str`).</span>
+<span class="sd">         - email: Change the email of the account (`str`).</span>
+<span class="sd">         - theme: Change the theme of the account {``light``, ``dark``}.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    grafanaAPI</span>
+<span class="sd">    changeAdminPassword</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    It can be acceptable for the request to fail, if the execution of this script</span>
+<span class="sd">    was interrupted before and it is still necessary to complete the final steps.</span>
+<span class="sd">    </span>
+<span class="sd">    When testing, changing the username and password did not kick the logged in </span>
+<span class="sd">    user from the website.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="s1">&#39;users/1&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">gapi</span><span class="o">.</span><span class="n">APIError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Failed to change default admin username. If the script failed in a previous &#39;</span>
+            <span class="s1">&#39;execution then it can still be necessary to execute the rest of the script. If this is the &#39;</span>
+            <span class="s1">&#39;first time you are running this script then there might be a connection problem with Grafana&#39;</span>
+            <span class="s1">&#39; or it might already be provisioned.&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="renameKioskOrg"><a class="viewcode-back" href="../setup.html#gpSetup.renameKioskOrg">[docs]</a><span class="k">def</span> <span class="nf">renameKioskOrg</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Rename the default organization (id=1) to what is in ``admins/_kiosk.yaml``.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        Raised if ``admins/_kiosk.yaml`` can&#39;t be found by this script. The file</span>
+<span class="sd">        must contain the name of the default organization and a list of users which</span>
+<span class="sd">        will be registered to it.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Raised if 0 or more than 1 organizations exist in ``admins/_kiosk.yaml``.</span>
+<span class="sd">        The number of organizations in this file must be exactly 1.</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: The first organization does not exist, invalid </span>
+<span class="sd">        credentials (`user` and `password`), the user doesn&#39;t have permission to</span>
+<span class="sd">        make this request or the server is not responding. Check the error messages</span>
+<span class="sd">        for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    grafanaAPI.request</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    Affects the current context organization for the user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">kiosk</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/_kiosk.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: The file &quot;</span><span class="si">{}</span><span class="s1">/_kiosk.yaml&quot; is missing. Make sure that the directory is set correctly&#39;</span>
+            <span class="s1">&#39; in &quot;config.yaml&quot; and that the file has the correct name. It must contain information about &#39;</span>
+            <span class="s1">&#39;the account(s) that are provisioned for the first organization. You can change the name of &#39;</span>
+            <span class="s1">&#39;the org in the key of the hash, but the filename shouldn</span><span class="se">\&#39;</span><span class="s1">t be changed.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">exc</span>
+        
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">kiosk</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/_kiosk.yaml must contain 1 organization.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))</span>
+    <span class="n">orgName</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">kiosk</span><span class="p">))</span>
+    
+    <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span><span class="n">orgName</span><span class="p">}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span> <span class="s1">&#39;orgs/1&#39;</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">gapi</span><span class="o">.</span><span class="n">APIError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error: There was an error when trying to change the default organization</span><span class="se">\&#39;</span><span class="s1">s name. Check &#39;</span>
+            <span class="s1">&#39;the requests</span><span class="se">\&#39;</span><span class="s1"> output below to see Grafana</span><span class="se">\&#39;</span><span class="s1">s response. There might be a problem with &#39;</span>
+            <span class="s1">&#39; Grafana, the API</span><span class="se">\&#39;</span><span class="s1">s account might be misconfigured or organization 1 might not exist.&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exc</span></div>
+
+
+<span class="n">_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+<span class="n">_lastInitialization</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/lastInitialization.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_path</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">_lastInitialization</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">_lastInitialization</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+    <span class="n">gapi</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">]</span>
+    <span class="n">adminsDir</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/admins&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;provisioningDir&#39;</span><span class="p">])</span>
+    
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">supers</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/_superAdmins.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file &quot;</span><span class="si">{}</span><span class="s1">/_superAdmins.yaml&quot; is missing! Make sure that the directory is set correctly in &#39;</span>
+            <span class="s1">&#39;&quot;config.yaml&quot; and that the file has the correct name. It must contain information for the two &#39;</span>
+            <span class="s1">&#39;Grafana Admin accounts, the main one (id=1) and the API account which the provisioning script &#39;</span>
+            <span class="s1">&#39;should use. See the structure in the documentation and default files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">exc</span>
+    
+    <span class="n">grafAdmin</span> <span class="o">=</span> <span class="n">supers</span><span class="p">[</span><span class="s1">&#39;grafanaAdmin&#39;</span><span class="p">]</span>
+    <span class="n">admLogin</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
+    <span class="n">admPasswd</span> <span class="o">=</span> <span class="s1">&#39;admin&#39;</span>
+    
+    <span class="n">changeAdminPassword</span><span class="p">(</span><span class="n">grafAdmin</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    <span class="n">admPasswd</span> <span class="o">=</span> <span class="n">grafAdmin</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+    
+    <span class="n">renameAdminUser</span><span class="p">(</span><span class="n">grafAdmin</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    <span class="n">admLogin</span> <span class="o">=</span> <span class="n">grafAdmin</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+    
+    <span class="n">api</span> <span class="o">=</span> <span class="n">supers</span><span class="p">[</span><span class="s1">&#39;api&#39;</span><span class="p">]</span>
+    <span class="n">gapi</span><span class="o">.</span><span class="n">createGrafanaAdmin</span><span class="p">(</span><span class="n">api</span><span class="p">,</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    
+    <span class="n">renameKioskOrg</span><span class="p">(</span><span class="n">api</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">],</span> <span class="n">api</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">])</span>
+    
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/lastInitialization.txt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_path</span><span class="p">),</span>
+            <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">provisioned</span><span class="p">:</span>
+        <span class="n">provisioned</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(</span><span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;seconds&#39;</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

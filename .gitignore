@@ -1,0 +1,3 @@
+*.pyo
+*.pyc
+GrafanaProvisioning/__pycache__/*

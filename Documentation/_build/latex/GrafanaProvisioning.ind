@@ -1,0 +1,71 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter A
+  \item \spxentry{APIError}, \hyperpage{15}
+
+  \indexspace
+  \bigletter C
+  \item \spxentry{changeAdminPassword()}\spxextra{in module gpSetup}, \hyperpage{21}
+  \item \spxentry{copyDashboardWithoutIds()}\spxextra{in module gpInputs}, \hyperpage{24}
+  \item \spxentry{createAccount()}\spxextra{in module grafanaAPI}, \hyperpage{15}
+  \item \spxentry{createAndReviewOrgs()}\spxextra{in module gpAccounts}, \hyperpage{29}
+  \item \spxentry{createGrafanaAdmin()}\spxextra{in module grafanaAPI}, \hyperpage{16}
+  \item \spxentry{createOrg()}\spxextra{in module grafanaAPI}, \hyperpage{16}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{getApiCredentials()}\spxextra{in module yamlUtility}, \hyperpage{11}
+  \item \spxentry{getDirList()}\spxextra{in module gpInputs}, \hyperpage{24}
+  \item \spxentry{getExistingUserId()}\spxextra{in module grafanaAPI}, \hyperpage{17}
+  \item \spxentry{getOrCreateUser()}\spxextra{in module gpAccounts}, \hyperpage{30}
+  \item \spxentry{getOrgId()}\spxextra{in module grafanaAPI}, \hyperpage{17}
+  \item \spxentry{getSuperAdminLogin()}\spxextra{in module yamlUtility}, \hyperpage{11}
+  \item \spxentry{getYamlContent()}\spxextra{in module yamlUtility}, \hyperpage{12}
+  \item \spxentry{gpAccounts}\spxextra{module}, \hyperpage{29}
+  \item \spxentry{gpInputs}\spxextra{module}, \hyperpage{23}
+  \item \spxentry{gpSetup}\spxextra{module}, \hyperpage{21}
+  \item \spxentry{grafanaAPI}\spxextra{module}, \hyperpage{15}
+
+  \indexspace
+  \bigletter L
+  \item \spxentry{loadConfig()}\spxextra{in module yamlUtility}, \hyperpage{12}
+  \item \spxentry{loadProvisionedOrgs()}\spxextra{in module gpAccounts}, \hyperpage{30}
+  \item \spxentry{loadProvisionedUsers()}\spxextra{in module gpAccounts}, \hyperpage{30}
+
+  \indexspace
+  \bigletter N
+  \item \spxentry{needsProvisioning()}\spxextra{in module gpInputs}, \hyperpage{24}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{provisionDashboards()}\spxextra{in module gpInputs}, \hyperpage{24}
+  \item \spxentry{provisionDatasources()}\spxextra{in module gpInputs}, \hyperpage{25}
+  \item \spxentry{provisionFolders()}\spxextra{in module gpInputs}, \hyperpage{25}
+  \item \spxentry{provisionOrg()}\spxextra{in module gpInputs}, \hyperpage{26}
+
+  \indexspace
+  \bigletter R
+  \item \spxentry{removeFromOrg()}\spxextra{in module grafanaAPI}, \hyperpage{18}
+  \item \spxentry{renameAdminUser()}\spxextra{in module gpSetup}, \hyperpage{21}
+  \item \spxentry{renameKioskOrg()}\spxextra{in module gpSetup}, \hyperpage{22}
+  \item \spxentry{request()}\spxextra{in module grafanaAPI}, \hyperpage{18}
+  \item \spxentry{reviewExistingOrgs()}\spxextra{in module gpAccounts}, \hyperpage{31}
+  \item \spxentry{reviewOrgUsers()}\spxextra{in module gpAccounts}, \hyperpage{32}
+
+  \indexspace
+  \bigletter S
+  \item \spxentry{setUserRoleOrg()}\spxextra{in module grafanaAPI}, \hyperpage{19}
+
+  \indexspace
+  \bigletter W
+  \item \spxentry{writeYamlContent()}\spxextra{in module yamlUtility}, \hyperpage{12}
+
+  \indexspace
+  \bigletter Y
+  \item \spxentry{yamlUtility}\spxextra{module}, \hyperpage{11}
+
+\end{sphinxtheindex}

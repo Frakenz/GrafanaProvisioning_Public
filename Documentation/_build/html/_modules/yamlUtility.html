@@ -1,0 +1,498 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>yamlUtility &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="../_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>yamlUtility</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for yamlUtility</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module to read from and write to our yaml configuration files.</span>
+
+<span class="sd">This module is intended to be used by the Grafana provisioning scripts to read</span>
+<span class="sd">information from certain yaml configuration files, and write to others. The </span>
+<span class="sd">functions getYamlContent and writeYamlContent are generic enough so that they </span>
+<span class="sd">can be used with any yaml file. It is implemented with pyyaml 3.13.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">=========</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<div class="viewcode-block" id="getYamlContent"><a class="viewcode-back" href="../yamlUtility.html#yamlUtility.getYamlContent">[docs]</a><span class="k">def</span> <span class="nf">getYamlContent</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return YAML file translated to a Python data structure.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    file : `str`</span>
+<span class="sd">        Path of the YAML file whose content will be loaded.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    yamlConfig : Usually `dict` or `list`</span>
+<span class="sd">        Contents of the YAML configuration file translated to Python, can be any</span>
+<span class="sd">        type of value or structure supported by YAML.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if the given file does not contain a valid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the module does not have read permissions on the given file.</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if the given file doesn&#39;t exist or if the file cannot be accessed by</span>
+<span class="sd">        the module.</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    Since YAML files are data structures mainly composed of dictionaries and lists,</span>
+<span class="sd">    the caller of this function must know what data structure to expect as a return</span>
+<span class="sd">    value for a given file.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">stream</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">yamlConfig</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">yamlConfig</span>
+            <span class="k">except</span> <span class="n">yaml</span><span class="o">.</span><span class="n">YAMLError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;There was an error when reading the YAML file, make sure that the file has a valid &#39;</span>
+                    <span class="s1">&#39;yaml format.&#39;</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">exc</span> <span class="kn">from</span> <span class="nn">None</span>
+    <span class="k">except</span> <span class="ne">PermissionError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not open </span><span class="si">{}</span><span class="s1"> because this user does not have permission to read the file.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="n">exc</span></div>
+
+
+<div class="viewcode-block" id="writeYamlContent"><a class="viewcode-back" href="../yamlUtility.html#yamlUtility.writeYamlContent">[docs]</a><span class="k">def</span> <span class="nf">writeYamlContent</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Write contents of a Python data structure to a YAML file.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    file : `str`</span>
+<span class="sd">        Path of the YAML to which `data` will be written.</span>
+<span class="sd">    data : Usually `dict` or `list`</span>
+<span class="sd">        Python data structure to be written in `file`, can be any type of value or</span>
+<span class="sd">        structure supported by YAML.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the module does not have write permissions on the given file or</span>
+<span class="sd">        directory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+            <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">PermissionError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Could not open </span><span class="si">{}</span><span class="s1"> because this user does not have permission to write to the file.&#39;</span>
+            <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="loadConfig"><a class="viewcode-back" href="../yamlUtility.html#yamlUtility.loadConfig">[docs]</a><span class="k">def</span> <span class="nf">loadConfig</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return config.yaml as a Python data structure and set global timeout.</span>
+<span class="sd">    </span>
+<span class="sd">    This function loads the content of config.yaml into Python. These are settings</span>
+<span class="sd">    for the Grafana provisioning scripts to use. It also sets the global value of</span>
+<span class="sd">    ``to``, which is a timeout configuration used by ``req()``.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    config : `dict`</span>
+<span class="sd">        The contents of config.yaml as a Python dictionary. Contains routes to</span>
+<span class="sd">        directories used by the provisioning scripts, and other settings such as</span>
+<span class="sd">        timeout limit for API requets.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if the config file does not contain a valid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the module does not have read permissions on the config file.</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if the config file doesn&#39;t exist or if the file cannot be accessed</span>
+<span class="sd">        by the module.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    getYamlContent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Get the absolute path to where this file is running from</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/config.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The file with the basic configuration for the provisioning is missing! This file should &#39;</span>
+            <span class="s1">&#39;contain important information like the directories where different files are stored. Check the &#39;</span>
+            <span class="s1">&#39;file structure in the documentation and default files.&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exc</span>
+    
+    <span class="k">return</span> <span class="n">config</span></div>
+
+
+<div class="viewcode-block" id="getSuperAdminLogin"><a class="viewcode-back" href="../yamlUtility.html#yamlUtility.getSuperAdminLogin">[docs]</a><span class="k">def</span> <span class="nf">getSuperAdminLogin</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Obtain the username of Grafana&#39;s Main admin account.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    login : `str`</span>
+<span class="sd">        Username of Grafana&#39;s Main admin account.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if the super admins file does not contain a valid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the module does not have read permissions on the super admins</span>
+<span class="sd">        file.</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if the super admins file doesn&#39;t exist or if the file cannot be</span>
+<span class="sd">        accessed by the module.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    loadConfig</span>
+<span class="sd">    getYamlContent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">admins</span> <span class="o">=</span> <span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/admins/_superAdmins.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;provisioningDir&#39;</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="n">admins</span><span class="p">[</span><span class="s1">&#39;grafanaAdmin&#39;</span><span class="p">][</span><span class="s1">&#39;data&#39;</span><span class="p">][</span><span class="s1">&#39;login&#39;</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="getApiCredentials"><a class="viewcode-back" href="../yamlUtility.html#yamlUtility.getApiCredentials">[docs]</a><span class="k">def</span> <span class="nf">getApiCredentials</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return Grafana&#39;s main admin&#39;s username and password.</span>
+<span class="sd">    </span>
+<span class="sd">    From the information stored in /admins/_superAdmins.yaml, return the main</span>
+<span class="sd">    admin&#39;s ``login`` and ``password``. This user should usually have id=1.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    admLogin : `str`</span>
+<span class="sd">        Username, or ``login``, of the main Grafana Admin account.</span>
+<span class="sd">    admPasswd : `str`</span>
+<span class="sd">        ``password`` of the main Grafana Admin account.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if the super admins file does not contain a valid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the module does not have read permissions on the super admins</span>
+<span class="sd">        file.</span>
+<span class="sd">    FileNotFoundError:</span>
+<span class="sd">        Raised if the super admins file doesn&#39;t exist or if the file cannot be</span>
+<span class="sd">        accessed by the module.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    loadConfig</span>
+<span class="sd">    getYamlContent</span>
+<span class="sd">    &quot;&quot;&quot;</span>    
+    <span class="c1"># Get API user and password</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/admins/_superAdmins.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;provisioningDir&#39;</span><span class="p">]))[</span><span class="s1">&#39;api&#39;</span><span class="p">]</span>
+    <span class="n">admLogin</span> <span class="o">=</span> <span class="n">api</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+    <span class="n">admPasswd</span> <span class="o">=</span> <span class="n">api</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+    
+    <span class="k">return</span> <span class="p">(</span><span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span></div>
+
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">loadConfig</span><span class="p">()</span>
+<span class="k">if</span> <span class="s1">&#39;provisioningDir&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">config</span><span class="p">:</span>
+    <span class="n">config</span><span class="p">[</span><span class="s1">&#39;provisioningDir&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

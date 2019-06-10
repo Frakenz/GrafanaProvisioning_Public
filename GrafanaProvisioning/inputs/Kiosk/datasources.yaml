@@ -1,0 +1,65 @@
+# <int> config file version. Required
+apiVersion: 1
+
+# list of datasources to insert/update depending
+# on what's available in the datbase
+datasources:
+
+  # http://docs.grafana.org/features/datasources/influxdb/#configure-the-datasource-with-provisioning
+  # <string, required> name of the datasource. Required
+- name: LSST InfluxDB
+  # <string, required> datasource type. Required
+  type: influxdb
+  # <string, required> access mode. direct or proxy. Required
+  access: proxy
+  # <string> url
+  url: https://123.123.123.123:8086
+  # <string> database name, if used
+  database: telegraf
+  # <string> database user, if used
+  user: grafana
+  # <string> database password, if used
+  password: yourpassword
+  ## <bool> enable/disable basic auth
+  #basicAuth:
+  ## <string> basic auth username
+  #basicAuthUser:
+  ## <string> basic auth password
+  #basicAuthPassword:
+  ## <bool> enable/disable with credentials headers
+  #withCredentials:
+  # <bool> mark as default datasource. Max one per org
+  isDefault: false
+  # <map> fields that will be converted to json and stored in json_data
+  jsonData:
+    tlsAuth: false
+    tlsAuthWithCACert: false
+    tlsSkipVerify: true
+    timeInterval: "1m"
+  ## <string> json object of data that will be encrypted.
+  #secureJsonData:
+  #  tlsCACert: "..."
+  #  tlsClientCert: "..."
+  #  tlsClientKey: "..."
+
+  # http://docs.grafana.org/features/datasources/mysql/#configure-the-datasource-with-provisioning
+- name: EFD Pathfinder
+  type: mysql
+  url: 123.123.123.123:3306
+  database: EFD
+  user: efduser
+  password: yourpassword
+  # <bool> mark as default datasource. Max one per org
+  isDefault: false
+  jsonData:
+    maxOpenConns: 0         # Grafana v5.4+
+    maxIdleConns: 2         # Grafana v5.4+
+    connMaxLifetime: 14400  # Grafana v5.4+
+    
+    #tlsAuth: false
+    #tlsAuthWithCACert: false
+    #tlsSkipVerify: true
+    timeInterval: "1m"
+
+
+  

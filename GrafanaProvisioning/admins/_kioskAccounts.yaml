@@ -1,0 +1,4 @@
+- login: display
+  password: yourpassword
+  name: Kiosk Display
+  email: display@localhost

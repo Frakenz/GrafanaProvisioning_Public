@@ -1,0 +1,14 @@
+grafanaAdmin:
+  password: yourpassword
+  data:
+    login: grafanaadmin
+    name: Grafana Admin
+    email: gadmin@localhost
+    theme: dark
+
+api:
+  login: grafanaApi
+  password: yourpassword
+  name: Puppet
+  email: api@localhost
+  

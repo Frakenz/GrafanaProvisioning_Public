@@ -1,0 +1,669 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>gpAccounts &mdash; Grafana Provisioning  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Grafana Provisioning
+          
+
+          
+            
+            <img src="../_static/lsst-logo-dark.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Readme</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Server Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#general-configuration">General Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-admin-accounts">Grafana Admin Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#default-organization">Default Organization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#dependencies">Dependencies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning-setup">Provisioning Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#provisioning">Provisioning</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#criteria-to-restart-grafana">Criteria to Restart Grafana</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#faq">FAQ</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#can-i-make-permanent-links-to-my-dashboards">Can I make permanent links to my dashboards?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#what-software-and-versions-does-this-project-use">What software and versions does this project use?</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../readme.html#recommendations">Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-settings">Grafana Settings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#dns">DNS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#viewers-can-edit">Viewers Can Edit</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#grafana-internal-database">Grafana Internal Database</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../readme.html#time-related-issues">Time Related Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#datasource-minimum-time-interval">Datasource Minimum Time Interval</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#influxdb-row-limit">InfluxDB Row Limit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../readme.html#telegraf-precision">Telegraf Precision</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputStructure.html">Provisioning Grafana Organizations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#grafana-basic-concepts">Grafana Basic Concepts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-provisioning-your-organization-means">What Provisioning Your Organization Means</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#input-structure">Input Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#folders-and-dashboards">Folders and Dashboards</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#exporting-dashboards">Exporting Dashboards</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputStructure.html#program-behavior-with-input-files">Program Behavior with Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-do">What the Input Files Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#org-yaml">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#accounts-yaml">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#datasources-yaml">datasources.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#dashboards">dashboards/</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inputStructure.html#what-the-input-files-can-t-do">What the Input Files Can’t Do</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id2">org.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id3">accounts.yaml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../inputStructure.html#id4">dashboards/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../yamlUtility.html">YAML Utility Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../yamlUtility.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../grafanaAPI.html">Grafana API Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../grafanaAPI.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../setup.html">Setup Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../setup.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../inputs.html">Input Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#input-files">Input Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#organization">Organization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#accounts">Accounts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#datasources">Datasources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs.html#dashboards">Dashboards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#notes">Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../accounts.html">Accounts Script</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../accounts.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Grafana Provisioning</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>gpAccounts</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for gpAccounts</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Provisions non-default orgs and non-admin accounts in Grafana using the API.</span>
+
+<span class="sd">This script is meant to run it&#39;s main body on every Puppet execution.</span>
+
+<span class="sd">It will make sure that there are no duplicate organizations or accounts in the</span>
+<span class="sd">YAML configuration files, and create them in Grafana in case they do not exist</span>
+<span class="sd">yet. Each account will be created with its given username, password, name and</span>
+<span class="sd">email. Each organization will be created with their given name, and all</span>
+<span class="sd">accounts in their list will be added to that organization with their given</span>
+<span class="sd">role. Note that accounts can belong to more than one organization, but must</span>
+<span class="sd">only be declared once in the YAML files.</span>
+
+<span class="sd">This script loads the basic info of all accounts and organizations into memory,</span>
+<span class="sd">and makes many requests to the API, so it can be a bit slow. Further testing is</span>
+<span class="sd">necessary to determine if, how and where it can be optimized.</span>
+
+<span class="sd">Functions</span>
+<span class="sd">=========</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">grafanaAPI</span> <span class="k">as</span> <span class="nn">gapi</span>
+<span class="kn">import</span> <span class="nn">yamlUtility</span> <span class="k">as</span> <span class="nn">yutil</span>
+
+    
+<div class="viewcode-block" id="loadProvisionedOrgs"><a class="viewcode-back" href="../accounts.html#gpAccounts.loadProvisionedOrgs">[docs]</a><span class="k">def</span> <span class="nf">loadProvisionedOrgs</span><span class="p">(</span><span class="n">orgsDir</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load orgs from YAML config into dict indexed by name, storing user lists.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgsDir : `str`</span>
+<span class="sd">        Path to the directory where the orgs YAML files (symlinks) are stored.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    provOrgs : `dict`</span>
+<span class="sd">        Dictionary containing all orgs in the provisioning configuration. Consists</span>
+<span class="sd">        of one key per org, where the key is the org&#39;s name and the value is a list</span>
+<span class="sd">        with the accounts to be provisioned for the organization.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Raised if there is more than one organization with the same name in the</span>
+<span class="sd">        YAML configuration files or if there isn&#39;t exactly one org in a given</span>
+<span class="sd">        ``org.yaml`` file.</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if an org file does not contain a valid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the script does not have read permissions on an org file.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    yamlUtility.getYamlContent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">provOrgs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">orgFile</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/[!_]*.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgsDir</span><span class="p">)):</span>
+        <span class="n">orgDict</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="n">orgFile</span><span class="p">)</span>
+        <span class="n">numOrgs</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">orgDict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">numOrgs</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;There must be 1 org in the configuration file and </span><span class="si">{}</span><span class="s1"> were found. </span><span class="si">{}</span><span class="s1">&#39;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">numOrgs</span><span class="p">,</span> <span class="n">orgFile</span><span class="p">))</span>
+        <span class="n">orgName</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">orgDict</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">orgName</span> <span class="ow">in</span> <span class="n">provOrgs</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Duplicate organization </span><span class="si">{}</span><span class="s1"> in the yaml configuration. </span><span class="si">{}</span><span class="s1">&#39;</span>
+                <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">orgFile</span><span class="p">))</span>
+        <span class="c1"># Save list of org&#39;s accounts</span>
+        <span class="n">provOrgs</span><span class="p">[</span><span class="n">orgName</span><span class="p">]</span> <span class="o">=</span> <span class="n">orgDict</span><span class="p">[</span><span class="n">orgName</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">provOrgs</span></div>
+
+
+<div class="viewcode-block" id="getOrCreateUser"><a class="viewcode-back" href="../accounts.html#gpAccounts.getOrCreateUser">[docs]</a><span class="k">def</span> <span class="nf">getOrCreateUser</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a user&#39;s ID. If the account doesn&#39;t exist, create it.</span>
+<span class="sd">    </span>
+<span class="sd">    Query for accounts containing the login name inside their login, email or name.</span>
+<span class="sd">    The default limit is 1000 results per page, it is not expected that a query</span>
+<span class="sd">    will match more than 1000 results. This is done instead of getting a single</span>
+<span class="sd">    user because this doesn&#39;t return a 404 code when the user isn&#39;t found.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    account : `dict`</span>
+<span class="sd">        Dictionary with the data that Grafana can receive for account creation with</span>
+<span class="sd">        the API. This is the same data which is found on an org&#39;s ``accounts.yaml``</span>
+<span class="sd">        file. Grafana 5.4.2 supports the following fields:</span>
+<span class="sd">        - ``login``: Username of the new user (`str`).</span>
+<span class="sd">        - ``password``: Password of the new user (`str`).</span>
+<span class="sd">        - ``name``: Name of the new user (`str`).</span>
+<span class="sd">        - ``email``: Email of the new user (`str`).</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    userId : `int`</span>
+<span class="sd">        Grafana ``id`` of the user. Either of an existing account or a new one.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: Trying to create an account with an email already in</span>
+<span class="sd">        use, invalid password or email, invalid credentials (`user` and</span>
+<span class="sd">        `password`), the user doesn&#39;t have permission to make this request or the</span>
+<span class="sd">        server is not responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    grafanaAPI.request</span>
+<span class="sd">    grafanaAPI.createAccount</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">login</span> <span class="o">=</span> <span class="n">account</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;users/search?query=</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">login</span><span class="p">),</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="n">users</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;users&#39;</span><span class="p">]</span>
+    <span class="c1"># https://stackoverflow.com/questions/9979970/#comment12752199_9980160</span>
+    <span class="n">userId</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">user</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">users</span> <span class="k">if</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">login</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># Check if user exists or else create it</span>
+    <span class="k">if</span> <span class="n">userId</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">userId</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">createAccount</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">userId</span></div>
+
+
+<div class="viewcode-block" id="loadProvisionedUsers"><a class="viewcode-back" href="../accounts.html#gpAccounts.loadProvisionedUsers">[docs]</a><span class="k">def</span> <span class="nf">loadProvisionedUsers</span><span class="p">(</span><span class="n">accountsDir</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Load users from YAML config, create them if the don&#39;t exist, get their IDs.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    accountsDir : `str`</span>
+<span class="sd">        Path to the directory where the accounts YAML files (symlinks) are stored.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    =======</span>
+<span class="sd">    existingUsers : `dict`</span>
+<span class="sd">        Dictionary containing all the Grafana users in the provisioning </span>
+<span class="sd">        configuration. Consists of one key per user, where the key is the user&#39;s</span>
+<span class="sd">        username and the value is the user&#39;s ID in Grafana.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        Raised if there is more than one user with the same username in the YAML</span>
+<span class="sd">        configuration files. This could happen if two orgs are trying to provision</span>
+<span class="sd">        the same user, in this case only one of them should provision the user in</span>
+<span class="sd">        the ``accounts.yaml`` file, but both of them should have the user in their</span>
+<span class="sd">        ``org.yaml`` file.</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: email already in use, invalid password or email,</span>
+<span class="sd">        invalid credentials (`user` and `password`), the user doesn&#39;t have</span>
+<span class="sd">        permission to make this request or the server is not responding. Check the</span>
+<span class="sd">        error messages for more information.</span>
+<span class="sd">    yaml.YAMLError</span>
+<span class="sd">        Raised if an accounts file does not contain a valid YAML format.</span>
+<span class="sd">    PermissionError:</span>
+<span class="sd">        Raised if the script does not have read permissions on an accounts file.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    getOrCreateUser</span>
+<span class="sd">    yamlUtility.getYamlContent</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">existingUsers</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="c1"># Don&#39;t open the files that start with &#39;_&#39;</span>
+    <span class="c1"># https://stackoverflow.com/a/36295481</span>
+    <span class="k">for</span> <span class="n">accountsFile</span> <span class="ow">in</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/[!_]*.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">accountsDir</span><span class="p">)):</span>
+        <span class="n">accountsList</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="n">accountsFile</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">accountsList</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">account</span> <span class="ow">in</span> <span class="n">accountsList</span><span class="p">:</span>
+                <span class="n">login</span> <span class="o">=</span> <span class="n">account</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">login</span> <span class="ow">in</span> <span class="n">existingUsers</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Duplicate user </span><span class="si">{}</span><span class="s1"> in the yaml configuration. </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">login</span><span class="p">,</span> <span class="n">accountsFile</span><span class="p">))</span>
+                <span class="n">existingUsers</span><span class="p">[</span><span class="n">login</span><span class="p">]</span> <span class="o">=</span> <span class="n">getOrCreateUser</span><span class="p">(</span><span class="n">account</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">existingUsers</span></div>
+
+
+<div class="viewcode-block" id="reviewOrgUsers"><a class="viewcode-back" href="../accounts.html#gpAccounts.reviewOrgUsers">[docs]</a><span class="k">def</span> <span class="nf">reviewOrgUsers</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">provOrgUserList</span><span class="p">,</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Make sure each user for the given org belongs to it with the correct role.</span>
+<span class="sd">    </span>
+<span class="sd">    For the given org, go through each user in the list and make sure they are in</span>
+<span class="sd">    the org and have the correct role. Assumes the users exists.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    orgId : `int`</span>
+<span class="sd">        ID of the organization to review users for.</span>
+<span class="sd">    provOrgUserList : `list` of `dict` of `str`</span>
+<span class="sd">        List of the users for each org. This is equivalent to the structure found</span>
+<span class="sd">        in the ``org.yaml`` input files. Each dict has two keys:</span>
+<span class="sd">        - login: Username of the account belonging to the org (`str`).</span>
+<span class="sd">        - role: Role that the account has in this organization (`str`).</span>
+<span class="sd">    existingUsers : `dict`</span>
+<span class="sd">        Dictionary containing all the Grafana users in the provisioning </span>
+<span class="sd">        configuration. Consists of one key per user, where the key is the user&#39;s</span>
+<span class="sd">        username and the value is the user&#39;s ID in Grafana.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: invalid `role`, inexistant organization or user, wrong</span>
+<span class="sd">        `login` regarding the given `userId`, invalid credentials (`user` and</span>
+<span class="sd">        `password`), the user doesn&#39;t have permission to make this request or the</span>
+<span class="sd">        server is not responding. Check the error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    grafanaAPI.setUserRoleOrg</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    If an account is configured in an ``org.yaml`` file but it is not found in any</span>
+<span class="sd">    ``accounts.yaml`` file, a warning message will be printed and the program will</span>
+<span class="sd">    continue normally.</span>
+<span class="sd">    </span>
+<span class="sd">    If an account is found more than once in an ``org.yaml`` file, only the first</span>
+<span class="sd">    time it appears on the file will be considered for provisioning and a warning</span>
+<span class="sd">    message will be printed. The program will continue normally.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">members</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">user</span> <span class="ow">in</span> <span class="n">provOrgUserList</span><span class="p">:</span>
+        <span class="n">login</span> <span class="o">=</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">login</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">existingUsers</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: Org number </span><span class="si">{}</span><span class="s1"> is trying to invite user &quot;</span><span class="si">{}</span><span class="s1">&quot; but the user</span><span class="se">\&#39;</span><span class="s1">s account was not &#39;</span>
+                <span class="s1">&#39;found in the configuration files.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">login</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">login</span> <span class="ow">in</span> <span class="n">members</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Warning: configuration for user &quot;</span><span class="si">{}</span><span class="s1">&quot; was found more than once on org number </span><span class="si">{}</span><span class="s1">. Only &#39;</span>
+                <span class="s1">&#39;the first instance is valid.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">login</span><span class="p">,</span> <span class="n">orgId</span><span class="p">))</span>
+            <span class="k">continue</span>
+        <span class="n">userId</span> <span class="o">=</span> <span class="n">existingUsers</span><span class="p">[</span><span class="n">login</span><span class="p">]</span>
+        
+        <span class="n">gapi</span><span class="o">.</span><span class="n">setUserRoleOrg</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">userId</span><span class="p">,</span> <span class="n">login</span><span class="p">,</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;role&#39;</span><span class="p">],</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+        
+        <span class="n">members</span><span class="p">[</span><span class="n">login</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="reviewExistingOrgs"><a class="viewcode-back" href="../accounts.html#gpAccounts.reviewExistingOrgs">[docs]</a><span class="k">def</span> <span class="nf">reviewExistingOrgs</span><span class="p">(</span><span class="n">grafOrgs</span><span class="p">,</span> <span class="n">provOrgs</span><span class="p">,</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loop through all existing orgs and make sure their accounts are provisioned.</span>
+<span class="sd">    </span>
+<span class="sd">    Loop through all of Grafana&#39;s existing orgs and make sure that the ones which</span>
+<span class="sd">    belong to the provisioning have their provisioned accounts associated to them,</span>
+<span class="sd">    with the correct role. Remove the org from the `provOrgs` dictionary after</span>
+<span class="sd">    finishing to be able to create and review the remaining ones later.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    grafOrgs : `list` of `dict`</span>
+<span class="sd">        List returned by Grafana containing all of its existing organizations.</span>
+<span class="sd">    provOrgs : `dict`</span>
+<span class="sd">        Dictionary containing all orgs in the provisioning configuration. Consists</span>
+<span class="sd">        of one key per org, where the key is the org&#39;s name and the value is a list</span>
+<span class="sd">        with the accounts to be provisioned for the organization.</span>
+<span class="sd">    existingUsers : `dict`</span>
+<span class="sd">        Dictionary containing all the Grafana users in the provisioning </span>
+<span class="sd">        configuration. Consists of one key per user, where the key is the user&#39;s</span>
+<span class="sd">        username and the value is the user&#39;s ID in Grafana.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: wrong parameters, invalid `role`, inexistant user,</span>
+<span class="sd">        invalid credentials (`user` and `password`), the user doesn&#39;t have </span>
+<span class="sd">        permission to make this request or the server is not responding. Check the</span>
+<span class="sd">        error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    reviewOrgUsers</span>
+<span class="sd">    grafanaAPI.setUserRoleOrg</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">org</span> <span class="ow">in</span> <span class="n">grafOrgs</span><span class="p">:</span>
+        <span class="n">orgName</span> <span class="o">=</span> <span class="n">org</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">orgName</span> <span class="ow">in</span> <span class="n">provOrgs</span><span class="p">:</span>
+            <span class="n">reviewOrgUsers</span><span class="p">(</span><span class="n">org</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">],</span> <span class="n">provOrgs</span><span class="p">[</span><span class="n">orgName</span><span class="p">],</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+            <span class="k">del</span> <span class="n">provOrgs</span><span class="p">[</span><span class="n">orgName</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="createAndReviewOrgs"><a class="viewcode-back" href="../accounts.html#gpAccounts.createAndReviewOrgs">[docs]</a><span class="k">def</span> <span class="nf">createAndReviewOrgs</span><span class="p">(</span><span class="n">provOrgs</span><span class="p">,</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Loop through non existing orgs, create them and provision their accounts.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ==========</span>
+<span class="sd">    provOrgs : `dict`</span>
+<span class="sd">        Dictionary containing all orgs in the provisioning configuration that have</span>
+<span class="sd">        not been created yet. Consists of one key per org, where the key is the</span>
+<span class="sd">        org&#39;s name and the value is a list with the accounts to be provisioned for</span>
+<span class="sd">        the organization.</span>
+<span class="sd">    existingUsers : `dict`</span>
+<span class="sd">        Dictionary containing all the Grafana users in the provisioning </span>
+<span class="sd">        configuration. Consists of one key per user, where the key is the user&#39;s</span>
+<span class="sd">        username and the value is the user&#39;s ID in Grafana.</span>
+<span class="sd">    user : `str`</span>
+<span class="sd">        ``login`` of the Grafana account that is making the API request.</span>
+<span class="sd">    password : `str`</span>
+<span class="sd">        ``password`` of the Grafana account that is making the API request.</span>
+<span class="sd">    </span>
+<span class="sd">    Raises</span>
+<span class="sd">    ======</span>
+<span class="sd">    grafanaAPI.APIError</span>
+<span class="sd">        Raised if the request replies with a status code in the 4XX or 5XX range.</span>
+<span class="sd">        The causes include: wrong parameters, invalid `role`, inexistant user,</span>
+<span class="sd">        invalid credentials (`user` and `password`), the user doesn&#39;t have </span>
+<span class="sd">        permission to make this request or the server is not responding. Check the</span>
+<span class="sd">        error messages for more information.</span>
+<span class="sd">    </span>
+<span class="sd">    See Also</span>
+<span class="sd">    ========</span>
+<span class="sd">    reviewExistingOrgs</span>
+<span class="sd">    reviewOrgUsers</span>
+<span class="sd">    grafanaAPI.createOrg</span>
+<span class="sd">    </span>
+<span class="sd">    Notes</span>
+<span class="sd">    =====</span>
+<span class="sd">    Relies on deleting the existing orgs from provOrgs</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># This shouldn&#39;t do anything unless an org is manually deleted from</span>
+    <span class="c1"># Grafana, because orgs are created when processing new input</span>
+    <span class="n">gadmin</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getSuperAdminLogin</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">orgName</span> <span class="ow">in</span> <span class="n">provOrgs</span><span class="p">:</span>
+        <span class="n">orgId</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">createOrg</span><span class="p">(</span><span class="n">orgName</span><span class="p">,</span> <span class="n">gadmin</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
+        <span class="n">reviewOrgUsers</span><span class="p">(</span><span class="n">orgId</span><span class="p">,</span> <span class="n">provOrgs</span><span class="p">[</span><span class="n">orgName</span><span class="p">],</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span></div>
+    
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">gapi</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;timeout&#39;</span><span class="p">]</span>
+    <span class="n">provisioningDir</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;provisioningDir&#39;</span><span class="p">]</span>
+    <span class="n">adminsDir</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/admins&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">)</span>
+    <span class="n">accountsDir</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/accounts&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">)</span>
+    <span class="n">orgsDir</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/orgs&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">provisioningDir</span><span class="p">)</span>
+    
+    <span class="c1"># Get API user and password</span>
+    <span class="n">api</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/_superAdmins.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))[</span><span class="s1">&#39;api&#39;</span><span class="p">]</span>
+    <span class="n">admLogin</span> <span class="o">=</span> <span class="n">api</span><span class="p">[</span><span class="s1">&#39;login&#39;</span><span class="p">]</span>
+    <span class="n">admPasswd</span> <span class="o">=</span> <span class="n">api</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+    
+    <span class="n">provOrgs</span> <span class="o">=</span> <span class="n">loadProvisionedOrgs</span><span class="p">(</span><span class="n">orgsDir</span><span class="p">)</span>
+    <span class="n">existingUsers</span> <span class="o">=</span> <span class="n">loadProvisionedUsers</span><span class="p">(</span><span class="n">accountsDir</span><span class="p">,</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    
+    <span class="c1"># Get all the orgs in Grafana</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">gapi</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s1">&#39;get&#39;</span><span class="p">,</span> <span class="s1">&#39;orgs&#39;</span><span class="p">,</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    <span class="n">grafOrgs</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    
+    <span class="n">reviewExistingOrgs</span><span class="p">(</span><span class="n">grafOrgs</span><span class="p">,</span> <span class="n">provOrgs</span><span class="p">,</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    <span class="n">createAndReviewOrgs</span><span class="p">(</span><span class="n">provOrgs</span><span class="p">,</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+    
+    <span class="c1"># Review users for the first organization (Kiosk)</span>
+    <span class="n">kiosk</span> <span class="o">=</span> <span class="n">yutil</span><span class="o">.</span><span class="n">getYamlContent</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1">/_kiosk.yaml&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">adminsDir</span><span class="p">))</span>
+    <span class="n">reviewOrgUsers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">kiosk</span><span class="p">[</span><span class="s1">&#39;Kiosk&#39;</span><span class="p">],</span> <span class="n">existingUsers</span><span class="p">,</span> <span class="n">admLogin</span><span class="p">,</span> <span class="n">admPasswd</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019 Association of Universities for Research in Astronomy.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+<p><br>
+    This project was developed for the IT Department of the LSST Project and
+    AURA by the intern José Moreno Hanshing under the supervision of Andrés
+    Villalobos Rivera, during Jan-Feb 2019 in the city of La Serena.
+    <address>
+        Contact: <a href="mailto:webmaster@example.com">
+        jmoreno.hanshing@gmail.com</a>
+    </address>
+</p>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

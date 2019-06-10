@@ -1,0 +1,3 @@
+Kiosk:
+  - login: display
+    role: Viewer
